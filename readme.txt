@@ -45,8 +45,8 @@ Albums can be created but are not fully functional yet.
 
 == Screenshots ==
 
-1. Screenshot
-2. Screen 2
+1. Front-end Screenshot
+2. Gallery edit screen
 
 == Changelog ==
 
@@ -55,14 +55,6 @@ Albums can be created but are not fully functional yet.
 
 
 == Upgrade Notice ==
-
-
-== Arbitrary section ==
-
-
-== A brief Markdown Example ==
-
-Ordered list:
 
 1. Load your images with ajax!
 2. Use multiple galleries with different templates on one page!
