@@ -45,7 +45,8 @@ Albums can be created but are not fully functional yet.
 
 == Screenshots ==
 
-
+1. Screenshot
+2. Screen 2
 
 == Changelog ==
 
