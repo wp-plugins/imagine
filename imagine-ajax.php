@@ -49,8 +49,8 @@ function imagine_ajaxsubmit() {
 		$datas = $_POST['addgallery'];
         
         $plugindir = wp_upload_dir();
-$pluginurl = $plugindir['baseurl'];
-$plugindir = $plugindir['basedir'];
+        $pluginurl = $plugindir['baseurl'];
+        $plugindir = $plugindir['basedir'];
 		foreach ($datas as $data) {
 			
 			if(isset($_POST['addgallery']['galId'])) {	
@@ -693,7 +693,6 @@ $plugindir = $plugindir['basedir'];
 				 
 				
 				$template = sanitize_text_field($_GET['imagine'][0]['template']);
-				$layovertemplate = sanitize_text_field($_GET['imagine'][0]['ltemp']);
 				$temp = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempType = 'album' AND tempName = '$template'");
 				$tslug = $temp->tempSlug;
 				
