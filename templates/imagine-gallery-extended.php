@@ -2,18 +2,20 @@
 
 
 	global $wpdb;
-	if(isset($_GET['imagine']['gallery'])) {
-	$gallery = intval($_GET['imagine']['gallery']);
-        echo 'gid: ' . $gallery;
-	}
+
 	$imgs = $wpdb -> get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gallery'");
 	$gallery = $wpdb -> get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gallery'");
 	$galslug = $gallery -> gallerySlug;
 	$gname = $gallery -> galleryName;
 	$gdesc = $gallery -> galleryDesc;
-	echo '<h2>'.esc_html($gname).'</h2>';
-	echo '<p>'.esc_html($gdesc).'</p>';
-	
+
+    // add checkup to see if this gallery is currently being viewed inside an album container. If so, dont show the title (and / or the description) //
+    $inside = $_GET['imagine'][0]['inside'];
+    if ( $inside !== 'true' ) {
+	   echo '<h2>'.esc_html($gname).'</h2>';
+        
+    }
+    echo '<p>'.esc_html($gdesc).'</p>';
 	foreach ($imgs as $img) {
 		$filename = $img -> imgFilename;
 		$title = $filename;
