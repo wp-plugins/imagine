@@ -55,7 +55,7 @@ function imagine_ajaxsubmit() {
 			
 			if(isset($_POST['addgallery']['galId'])) {	
 				$galid = intval($data['galId']);
-				$exist = $wpdb->get_results("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$galid'");
+				$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$galid'");
 			} else {
 				$exist = null;
 			}
@@ -82,7 +82,7 @@ function imagine_ajaxsubmit() {
 					$galslug = sanitize_text_field($data['galSlug']);
 					$galslug = explode(" ", $galslug);
 					$galslug = implode('-', $galslug);
-					
+					$bid = get_current_blog_id();
 					$galpath = $plugindir.'/imagine/'.$galslug;
 				}	
 			}
@@ -106,16 +106,16 @@ function imagine_ajaxsubmit() {
 				$galdesc = null;
 			}
 			
-			$existname = $wpdb->get_results("SELECT * FROM wp_imagine_gallery WHERE galleryName = '$galname'");
+			$existname = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryName = '$galname'");
 			if ($existname == NULL) {
 				if ($exist != NULL && $existname != NULL) {
-					$wpdb -> update('wp_imagine_gallery', array(
+					$wpdb -> update($wpdb->prefix.'imagine_gallery', array(
 						"galleryName" => $galname, 
 						"galleryDesc"=>$galdesc, 
 						"galleryPreviewImg"=>"unset"), 
 						array("galleryId"=>$galid, "galleryName"=>$galname));
 					} else {
-						$wpdb -> insert('wp_imagine_gallery', array(
+						$wpdb -> insert($wpdb->prefix.'imagine_gallery', array(
 							"galleryName" => $galname, 
 							"gallerySlug" => $galslug, 
 							"galleryPath" => $galpath, 
@@ -166,9 +166,9 @@ function imagine_ajaxsubmit() {
 			} else {
 				$galdesc = null;
 			}
-			$exist = $wpdb->get_results("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$galid'");
+			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$galid'");
 			if ($exist != NULL) {
-				$wpdb -> update('wp_imagine_gallery', array(
+				$wpdb -> update($wpdb->prefix.'imagine_gallery', array(
 					"galleryName" => $galname, 
 					"galleryDesc"=>$galdesc), 
 					array("galleryId"=>$galid));
@@ -212,7 +212,7 @@ function imagine_ajaxsubmit() {
 		foreach ($datas as $data) {
 			if(isset($data['albumId'])) {	
 				$aid = intval($data['albumId']);
-				$exist = $wpdb->get_results("SELECT * FROM wp_imagine_albums WHERE albumId = '$aid'");
+				$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$aid'");
 			} else {
 				$exist = null;
 			}
@@ -264,17 +264,17 @@ function imagine_ajaxsubmit() {
 			
 			
 			
-			$existname = $wpdb->get_results("SELECT * FROM wp_imagine_albums WHERE albumName = '$aname'");
+			$existname = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumName = '$aname'");
 			if ($existname == NULL) {
 				if ($exist != NULL && $existname != NULL) {
-					$wpdb -> update('wp_imagine_albums', array(
+					$wpdb -> update($wpdb->prefix.'imagine_albums', array(
 						"albumName" => $aname, 
 						"albumSlug" => $aslug, 
 						"albumDesc"=>$adesc, 
 						"albumPreviewImg"=>"unset"), 
 						array("albumId"=>$aid, "albumName"=>$aname));
 					} else {
-						$wpdb -> insert('wp_imagine_albums', array(
+						$wpdb -> insert($wpdb->prefix.'imagine_albums', array(
 							"albumName" => $aname, 
 							"albumSlug" => $aslug, 
 							"creationDate" => $today,
@@ -302,7 +302,7 @@ function imagine_ajaxsubmit() {
     if ( isset($_POST['savealbum']) ) {
         $acontent = $_POST['savealbum']['content'];
         $aid = $_POST['savealbum']['aid'];
-        $wpdb->update('wp_imagine_albums', array("albumContent" => $acontent), array("albumId" => $aid));
+        $wpdb->update($wpdb->prefix.'imagine_albums', array("albumContent" => $acontent), array("albumId" => $aid));
         
         $tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-album.php";
 			include $tempfile;
@@ -368,9 +368,9 @@ function imagine_ajaxsubmit() {
 			}
 			
 			
-			$exist = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempId = '$tmpid'");
+			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempId = '$tmpid'");
 			if ($exist != NULL) {
-				$wpdb -> update('wp_imagine_templates', array(
+				$wpdb -> update($wpdb->prefix.'imagine_templates', array(
 					"tempName" => $tmpname, 
 					"tempDesc"=>$tmpdesc), 
 					array("tempId"=>$tmpid));
@@ -441,12 +441,12 @@ function imagine_ajaxsubmit() {
 			
 			$temppath = $dir.'/imagine/templates/';
 			
-			$exist = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = '$tmptype' && tempName = '$tmpname'");
+			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = '$tmptype' && tempName = '$tmpname'");
 			if ($exist != NULL) {
 				
 				echo 'Template name exists.';
 				} else {
-					$wpdb -> insert('wp_imagine_templates', array(
+					$wpdb -> insert($wpdb->prefix.'imagine_templates', array(
 						"tempName" => $tmpname, 
 						"tempType" => $tmptype,
 						"tempSlug" => $tmpslug,
@@ -520,9 +520,9 @@ function imagine_ajaxsubmit() {
 			
 			
 			
-			$exist = $wpdb->get_results("SELECT * FROM wp_imagine_img WHERE imgId = '$imgid'");
+			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE imgId = '$imgid'");
 			if ($exist != NULL) {
-				$wpdb -> update('wp_imagine_img', array("imgDesc"=>$imgdesc,"imgAltTitle"=>$imgtitle), array("imgId"=>$imgid));
+				$wpdb -> update($wpdb->prefix.'imagine_img', array("imgDesc"=>$imgdesc,"imgAltTitle"=>$imgtitle), array("imgId"=>$imgid));
 		
 			} 
 			$gedit = $gid;
@@ -564,7 +564,7 @@ function imagine_ajaxsubmit() {
 			break 1;
 		}
 		
-		$gallery = $wpdb->get_row('SELECT * FROM wp_imagine_gallery WHERE galleryId = "$gid"');
+		$gallery = $wpdb->get_row('SELECT * FROM '.$wpdb->prefix.'imagine_gallery WHERE galleryId = "$gid"');
 		$original_input = "<div class='imagine' type='gallery' gid='".esc_attr($gid)."' template='".esc_attr($temp)."' layovertemp='".esc_attr($layovertemplate)."'></div>";
 		$html_encoded = htmlentities($original_input);
 		echo $html_encoded;
@@ -669,7 +669,7 @@ function imagine_ajaxsubmit() {
 			}
 			
 			
-			$temp = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempType = 'gallery' AND tempName='$template'");
+			$temp = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'gallery' AND tempName='$template'");
 			$tslug = $temp->tempSlug;
 			$tid = $temp->tempId;
 			$css = $temp->tempCss;
@@ -693,7 +693,7 @@ function imagine_ajaxsubmit() {
 				 
 				
 				$template = sanitize_text_field($_GET['imagine'][0]['template']);
-				$temp = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempType = 'album' AND tempName = '$template'");
+				$temp = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'album' AND tempName = '$template'");
 				$tslug = $temp->tempSlug;
 				
 				$tid = $temp->tempId;
@@ -720,8 +720,8 @@ function imagine_ajaxsubmit() {
 			} else {
 				$layovertemplate = get_option('optionImagineDefaultLayoverTemplate');
 			}
-			$img = $wpdb->get_row("SELECT * FROM wp_imagine_img WHERE imgId = '$imgid' AND galleryId = '$gid'");
-			$gallery = $wpdb -> get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gid'");
+			$img = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE imgId = '$imgid' AND galleryId = '$gid'");
+			$gallery = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gid'");
 			$galslug = $gallery->gallerySlug;
 			$filename = $img -> imgFilename;
 			$plugindir = wp_upload_dir();

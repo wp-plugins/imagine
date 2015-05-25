@@ -6,7 +6,7 @@
     }
 
 
-	$album = $wpdb->get_row("SELECT * FROM wp_imagine_albums WHERE albumId = '$aedit'");
+	$album = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$aedit'");
 	
 	$aname = $album -> albumName;
 	$acontent = $album -> albumContent;
@@ -22,7 +22,7 @@
     echo '<p>Drag&drop a gallery into the album (on the right).</p>';
    echo '<div class="addGal">';
     // Adding galleries into the album
-    $galleries = $wpdb->get_results('SELECT * FROM wp_imagine_gallery');
+    $galleries = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'_imagine_gallery');
     foreach( $galleries as $gal ) {
         $gname = $gal -> galleryName;
         $gid = $gal -> galleryId;
@@ -39,7 +39,7 @@
     } else {
         $gallery = explode(',', $acontent);
         foreach( $gallery as $gal ) {
-            $data = $wpdb->get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gal'");
+            $data = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gal'");
             $gname = $data -> galleryName;
             $gid = $data -> galleryId;
             echo '<div class="gal" gid="' . esc_attr($gal) . '">ID:' . esc_html($gal) . ' - Name: ' . esc_html($gname) . '<span style="float:right; margin-right: 12px" ref="del">X</span></div>';

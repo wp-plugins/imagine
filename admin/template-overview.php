@@ -14,7 +14,7 @@ echo '<div class="imagine-template-overview-wrap">';
 //	echo '</select>';
 //	echo '</div>';
 
-	$templates = $wpdb -> get_results('SELECT * FROM wp_imagine_templates');
+	$templates = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates');
 	echo '<p class="imagine-notice">Future versions will contain methods to create your own template. For now you can write your own template file and upload it into wp-content/plugins/imagine/templates.</p>';
 	
 	echo '<span style="float:right">Drag this or any table to the left to view more options!</span>';

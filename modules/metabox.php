@@ -1,10 +1,10 @@
 <?php
 	global $wpdb;
-	$galleries = $wpdb -> get_results('SELECT * FROM wp_imagine_gallery');
-	$albums = $wpdb -> get_results('SELECT * FROM wp_imagine_albums');
-	$galtemp = $wpdb -> get_results('SELECT * FROM wp_imagine_templates WHERE tempType="gallery"');
-	$albtemp = $wpdb -> get_results('SELECT * FROM wp_imagine_templates WHERE tempType="album"');
-	$overlaytemp = $wpdb -> get_results('SELECT * FROM wp_imagine_templates WHERE tempType="overlay"');
+	$galleries = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_gallery');
+	$albums = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_albums');
+	$galtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="gallery"');
+	$albtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="album"');
+	$overlaytemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="overlay"');
 ?>
 
     <div class="metaoptions">

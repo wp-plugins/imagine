@@ -148,6 +148,7 @@
                     }
                     if ( inside == 'true' ) {
                         var ins = 'true';
+                        var aid = imagine.closest('[type="album"]').attr('aid');
                     }
                     
                     
@@ -162,6 +163,7 @@
                         inside: ins
                     });
                     
+                    // check to see if imagine container has an album parent.
                     
                     
                     /* send the data to admin-ajax.php */
@@ -171,7 +173,11 @@
                         dataType: 'html',
                     }, function(response, data, xhr) {
                         /* append the response to the correct gallery */
-                        $('.imagine[gid="'+gid+'"][type="gallery"]').fadeIn(1000).html(response);
+                        if ( aid != undefined ) {
+                            $('[aid="'+aid+'"] .imagine[gid="'+gid+'"][type="gallery"]').fadeIn(1000).html(response);
+                        } else {
+                            $('.imagine[gid="'+gid+'"][type="gallery"]').fadeIn(1000).html(response);
+                        }
                     });
 				});	
 			}
@@ -180,7 +186,8 @@
         /* Album overview gallery wrap click event */
 		$(document).on('click', '.imagine-gallery-wrap', function() {
             /* hide all galleries */
-            $('.imagine[type="gallery"]').hide();
+            var aid = $(this).closest('[type="album"]').attr('aid');
+            $('[type="album"] .imagine[type="gallery"]').hide();
             /* get id clicked gal */
             var gid = $(this).attr('gid');
             /* check to see if contains .imagine already. */
@@ -192,7 +199,7 @@
                 $.imagineGallery('true', gid);
             /* if found just show the gallery */
 			} else if ( content.length == true ) {
-                $('.imagine[type="gallery"][gid="'+gid+'"]').fadeIn(1000);
+                $('[aid="'+aid+'"] .imagine[type="gallery"][gid="'+gid+'"]').fadeIn(1000);
             }
 		});
 		

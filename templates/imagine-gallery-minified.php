@@ -5,13 +5,13 @@ if (isset($_GET['imagine']['template'])) {
 	$template = $_GET['imagine']['template'];
 }
 
-$temp = $wpdb -> get_row("SELECT * FROM wp_imagine_templates WHERE tempType = 'gallery' AND tempName='$template'");
+$temp = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'gallery' AND tempName='$template'");
 $tslug = $temp -> tempSlug;
 if (isset($_GET['imagine']['gallery'])) {
 	$gallery = $_GET['imagine']['gallery'];
 }
-$imgs = $wpdb -> get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gallery'");
-$gallery = $wpdb -> get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gallery'");
+$imgs = $wpdb -> get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE galleryId = '$gallery'");
+$gallery = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gallery'");
 $galslug = $gallery -> gallerySlug;
 
 foreach ($imgs as $img) {

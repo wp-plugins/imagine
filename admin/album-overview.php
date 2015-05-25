@@ -10,7 +10,7 @@ echo '<h2>Edit albums</h2>';
 	echo '<input type="text" class="regular-text" name="add-album" value="New album name...">';
 	echo '</div>';
 
-	$albums = $wpdb -> get_results('SELECT * FROM wp_imagine_albums');
+	$albums = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_albums');
 	
 	
 	echo '<span style="float:right">Drag this or any table to the left to view more options!</span>';

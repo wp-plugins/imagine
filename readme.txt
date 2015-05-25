@@ -49,6 +49,9 @@ Yes.
 2.
 
 == Changelog ==
+= 0.99.2 =
+* Added Wordpress Multisite support.
+
 = 0.99.1 =
 * Added Edit Album section.
 * Updated metabox to output Album.

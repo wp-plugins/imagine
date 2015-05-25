@@ -21,12 +21,37 @@
 // ------------------------------------------------------------------------------------- SETUP IMAGINE     --------------------------------------------------------  //
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------  //	
 	
+
+function on_activate( $network_wide ) {
+    
+    
+        global $wpdb;
+
+    if ( is_multisite() && $network_wide ) {
+        // store the current blog id
+        $current_blog = $wpdb->blogid;
+
+        // Get all blogs in the network and activate plugin on each one
+        $blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+        foreach ( $blog_ids as $blog_id ) {
+            switch_to_blog( $blog_id );
+            register_imagine();
+            restore_current_blog();
+        }
+    } else {
+        register_imagine();
+    }
+
+}
 function register_imagine() {
 
 	global $wpdb;
+    $table_img = $wpdb->prefix . 'imagine_img';
+    $table_gallery = $wpdb->prefix . 'imagine_gallery';
+    $table_templates = $wpdb->prefix . 'imagine_templates';
+    $table_albums = $wpdb->prefix . 'imagine_albums';
 
-
-	$images = "CREATE TABLE IF NOT EXISTS wp_imagine_img (
+	$images = "CREATE TABLE IF NOT EXISTS " . $table_img ." (
 			imgId mediumint(9) NOT NULL AUTO_INCREMENT,
 			galleryId tinytext NOT NULL,
 			imgSlug tinytext NOT NULL,
@@ -41,7 +66,7 @@ function register_imagine() {
 			PRIMARY KEY (imgId)
 		);";
 
-	$galleries = "CREATE TABLE IF NOT EXISTS wp_imagine_gallery (
+	$galleries = "CREATE TABLE IF NOT EXISTS " . $table_gallery ." (
 			galleryId mediumint(9) NOT NULL AUTO_INCREMENT,
 			galleryName varchar(255) NOT NULL,
 			gallerySlug varchar(255) NOT NULL,
@@ -55,7 +80,7 @@ function register_imagine() {
 			PRIMARY KEY (galleryId)
 		);";
 		
-		$templates = "CREATE TABLE IF NOT EXISTS wp_imagine_templates (
+		$templates = "CREATE TABLE IF NOT EXISTS " . $table_templates ." (
 			tempId mediumint(9) NOT NULL AUTO_INCREMENT,
 			tempName varchar(255) NOT NULL,
 			tempType varchar(255) NOT NULL,
@@ -69,7 +94,7 @@ function register_imagine() {
 			tempPath varchar(255),
 			PRIMARY KEY (tempId)
 		);";
-		$albums = "CREATE TABLE IF NOT EXISTS wp_imagine_albums (
+		$albums = "CREATE TABLE IF NOT EXISTS " . $table_albums ." (
 			albumId mediumint(9) NOT NULL AUTO_INCREMENT,
 			albumName varchar(255) NOT NULL,
 			albumSlug varchar(255),
@@ -107,9 +132,9 @@ function register_imagine() {
 		update_option('optionImagineDefaultLayoverTemplate', 'imagine'); 
 	}
 	
-	$ext = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempName ='Imagine Gallery Extended'");
-	$min = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempName ='Imagine Gallery Minified'");
-	$alb = $wpdb->get_row("SELECT * FROM wp_imagine_templates WHERE tempName ='Imagine Album Minified'");
+	$ext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Extended'");
+	$min = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Minified'");
+	$alb = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
 	$today = date("Y-m-d"); 
 	$time = date('H:i:s');
 	
@@ -117,7 +142,7 @@ function register_imagine() {
 	$temppath = $dir.'/templates/';
 	// insert default gallery templates into WPDB
 	if ( $ext == NULL) {
-	$wpdb -> insert('wp_imagine_templates', array(
+	$wpdb -> insert( $table_templates, array(
 						"tempName" => "Imagine Gallery Extended", 
 						"tempType" => "gallery",
 						"tempSlug" => "imagine-gallery-extended",
@@ -132,7 +157,7 @@ function register_imagine() {
 				);
 	}
 	if ($min == NULL) {
-	$wpdb -> insert('wp_imagine_templates', array(
+	$wpdb -> insert($table_templates, array(
 						"tempName" => "Imagine Gallery Minified", 
 						"tempType" => "gallery",
 						"tempSlug" => "imagine-gallery-minified",
@@ -147,7 +172,7 @@ function register_imagine() {
 				);		
 				}	
 	if ($alb == NULL) {
-	$wpdb -> insert('wp_imagine_templates', array(
+	$wpdb -> insert($table_templates, array(
 						"tempName" => "Imagine Album Minified", 
 						"tempType" => "album",
 						"tempSlug" => "imagine-album-minified",
@@ -164,10 +189,33 @@ function register_imagine() {
 	
 }
 
-register_activation_hook(__FILE__, 'register_imagine');
+register_activation_hook(__FILE__, 'on_activate');
 
 
+// Creating table whenever a new blog is created
+function on_create_blog( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
+    if ( is_plugin_active_for_network( 'imagine/index.php' ) ) {
+        switch_to_blog( $blog_id );
+        register_imagine();
+        restore_current_blog();
+    }
+}
+add_action( 'wpmu_new_blog', 'on_create_blog', 10, 6 );
 	
+// Deleting the table whenever a blog is deleted
+function on_delete_blog( $tables ) {
+    global $wpdb;
+    $tables[] = Array();
+    Array_push($tables, $wpdb->prefix . 'imagine_img');
+    Array_push($tables, $wpdb->prefix . 'imagine_templates');
+    Array_push($tables, $wpdb->prefix . 'imagine_albums');
+    Array_push($tables, $wpdb->prefix . 'imagine_gallery');
+    return $tables;
+    
+    
+    
+}
+add_filter( 'wpmu_drop_tables', 'on_delete_blog' );
 
 
 

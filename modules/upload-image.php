@@ -13,7 +13,7 @@ $plugindir = wp_upload_dir();
 $pluginurl = $plugindir['baseurl'];
 $plugindir = $plugindir['basedir'];
 
-$galinfo = $wpdb -> get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gedit'");
+$galinfo = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gedit'");
 
 $galslug = $galinfo -> gallerySlug;
 $gid = $galinfo -> galleryId;
@@ -82,11 +82,11 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 		$author = wp_get_current_user();
 		$author = $author -> display_name;
 
-		$img = $wpdb -> get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gid' AND imgFilename='$file_name'");
+		$img = $wpdb -> get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE galleryId = '$gid' AND imgFilename='$file_name'");
 		if ($img != NULL) {
-			$wpdb -> update('wp_imagine_img', array("imgSize" => $filesize, "imgSlug" => $file_name, "imgFilename" => $file_name, "galleryId" => $gid), array("galleryId" => $gid, "imgFilename" => $filename));
+			$wpdb -> update($wpdb->prefix.'imagine_img', array("imgSize" => $filesize, "imgSlug" => $file_name, "imgFilename" => $file_name, "galleryId" => $gid), array("galleryId" => $gid, "imgFilename" => $filename));
 		} else {
-			$wpdb -> insert('wp_imagine_img', array("imgSize" => $filesize, "imgSlug" => $file_name, "imgFilename" => $file_name, "creationDate" => $today, "creationTime" => $time, "imgAuthor" => $author, "galleryId" => $gid));
+			$wpdb -> insert($wpdb->prefix.'imagine_img', array("imgSize" => $filesize, "imgSlug" => $file_name, "imgFilename" => $file_name, "creationDate" => $today, "creationTime" => $time, "imgAuthor" => $author, "galleryId" => $gid));
 
 		}
 

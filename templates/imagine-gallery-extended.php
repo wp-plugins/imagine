@@ -3,8 +3,8 @@
 
 	global $wpdb;
 
-	$imgs = $wpdb -> get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gallery'");
-	$gallery = $wpdb -> get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gallery'");
+	$imgs = $wpdb -> get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE galleryId = '$gallery'");
+	$gallery = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gallery'");
 	$galslug = $gallery -> gallerySlug;
 	$gname = $gallery -> galleryName;
 	$gdesc = $gallery -> galleryDesc;

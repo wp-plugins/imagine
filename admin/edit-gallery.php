@@ -4,7 +4,7 @@
 	}
 
 
-	$gallery = $wpdb->get_row("SELECT * FROM wp_imagine_gallery WHERE galleryId = '$gedit'");
+	$gallery = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gedit'");
 	
 	$galname = $gallery -> galleryName;
 	$galslug = $gallery -> gallerySlug;
@@ -24,7 +24,7 @@
 	
 	
 	
-	$imgs = $wpdb->get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gedit'");
+	$imgs = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE galleryId = '$gedit'");
 	
 	
 	echo '<form method="post" enctype="multipart/form-data" galleryId="'.esc_attr($gid).'" galleryname="'.esc_attr($galname).'" class="uploadform">';

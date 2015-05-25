@@ -9,7 +9,7 @@ echo '<h2>Edit galleries</h2>';
 	echo '<input type="text" class="regular-text" name="add-gallery" value="New gallery name...">';
 	echo '</div>';
 
-	$galleries = $wpdb -> get_results('SELECT * FROM wp_imagine_gallery');
+	$galleries = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_gallery');
 	
 	
 	echo '<span style="float:right">Drag this or any table to the left to view more options!</span>';
@@ -43,7 +43,7 @@ echo '<h2>Edit galleries</h2>';
 		$gtime = $gallery->creationTime;
 		$gauthor = $gallery->galleryAuthor;
 		
-		$contains = $wpdb->get_results("SELECT * FROM wp_imagine_img WHERE galleryId = '$gid'");
+		$contains = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."imagine_img WHERE galleryId = '$gid'");
 		
 		$imgs = count($contains);
 		
