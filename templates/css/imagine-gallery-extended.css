@@ -1,0 +1,72 @@
+.imagine {
+	position:relative;
+	left:0;
+	top:0;
+}
+
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] {
+	width:100% - 10px;
+	left:0;
+	top:0;
+	position:relative;
+	height:auto;
+	margin: 0 0 10px 0;
+	padding: 0 6px 6px 0;
+	background-color: rgba(255,255,255,0.6);
+	word-break:break-all;
+}
+
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] img {
+   position:relative;
+  height:auto;
+    float:left;
+    clear:none;
+    padding: 6px 0 0 6px;
+}
+
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] .imagine-thumbnail-metadata {
+	position:relative;
+   top: 3px;
+   height:auto;
+   width:auto;
+   float:left;
+   clear:none;
+}
+
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] h4 {
+	margin: 0 0 10px;
+	position:relative;
+	left:6px;
+	top:0;
+	width:auto;
+	padding-right:6px;
+	height:auto;
+	float:left; 
+	clear:both;
+    font-size: 1em;
+}
+
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] .image-info {
+	position:relative;
+	left:6px;
+	top:0;
+	width:auto;
+	padding-right:6px;
+	font-size:0.8em;
+	height: auto;
+	float:left; 
+	clear:both;
+}
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] .image-description {
+	position:relative;
+   width:auto;
+   height:auto;
+   left:12px;
+   top:0;
+   padding-right:12px;
+   font-style:italic;
+   font-size:0.9em;
+   margin-bottom:12px;
+   float:left; 
+	clear:both;
+}

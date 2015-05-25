@@ -1,0 +1,28 @@
+#imagine-layover {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	overflow:hidden;
+	background:rgba(0,0,0,0.7);
+	z-index:999;
+}
+
+.layover-image {
+	position:relative;
+	width:90%;
+	left:5%;
+	top:10%;
+	height:auto;
+	z-index:999;
+}
+#imagine-layover span {
+	position:absolute;
+	right:1%;
+	top:1%;
+	width:auto;
+	height:auto;
+	color:white;
+	z-index:999;
+}
