@@ -13,12 +13,25 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
 <p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
 
+<p><strong>Current features</strong>
+<ul>
+<li>Galleries</li>
+<li>Image upload</li>
+<li>Albums</li>
+<li>Code generator</li>
+<li>Custom templates (for now only hardcoded into php/css)</li>
+<li>Some settings</li>
+</ul>
+</p>
+
+
 <p>
 <strong>Future design plans are;</strong>
 <ul>
 <li>More settings.</li>
 <li>Building more default templates.</li>
-<li>WYSIWIG template creation.</p>
+<li>WYSIWIG template creation.</li>
+<li>Improve.</li>
 </ul>
 </p>
 
