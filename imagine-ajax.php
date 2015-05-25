@@ -47,6 +47,10 @@ function imagine_ajaxsubmit() {
 	// ----------------------------------------------------------------------------------------------------------------------------------Add/Edit/Update Gallery--------  //
 	if (isset($_POST['addgallery'])){
 		$datas = $_POST['addgallery'];
+        
+        $plugindir = wp_upload_dir();
+$pluginurl = $plugindir['baseurl'];
+$plugindir = $plugindir['basedir'];
 		foreach ($datas as $data) {
 			
 			if(isset($_POST['addgallery']['galId'])) {	
@@ -79,7 +83,7 @@ function imagine_ajaxsubmit() {
 					$galslug = explode(" ", $galslug);
 					$galslug = implode('-', $galslug);
 					
-					$galpath = content_url().'/imagine/'.$galslug;
+					$galpath = $plugindir.'/imagine/'.$galslug;
 				}	
 			}
 			
@@ -91,8 +95,6 @@ function imagine_ajaxsubmit() {
 			$author = wp_get_current_user();
 			$author = $author->display_name;
 			
-			$galpath = explode(" ", $galpath);
-			$galpath = implode('-', $galpath);
 			if(isset($data['galDesc'])) {	
 				if ( !ctype_alnum( str_replace(' ', '', $data['galDesc']) ) ) {
   					echo "<p class='fail'>Only letters and white space allowed</p>";
@@ -295,6 +297,16 @@ function imagine_ajaxsubmit() {
 		echo '<div class="imagine-formtable-wrap"></div>';
 
 	}
+    
+    // Save album content
+    if ( isset($_POST['savealbum']) ) {
+        $acontent = $_POST['savealbum']['content'];
+        $aid = $_POST['savealbum']['aid'];
+        $wpdb->update('wp_imagine_albums', array("albumContent" => $acontent), array("albumId" => $aid));
+        
+        $tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-album.php";
+			include $tempfile;
+    }
 
 	// if gallery edit is set show specific gallery to edit.
 	if (isset($_POST['albumedit'])) {
@@ -306,6 +318,21 @@ function imagine_ajaxsubmit() {
 			$tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-album.php";
 			include $tempfile;
 		}
+	}
+    
+    if (isset($_POST['adel'])) {
+		$aid = $_POST['adel'];
+		if ( !ctype_digit($aid) ) {
+			echo "<p class='fail'>Unable to remove album.</p>";
+		} else {
+			// INCLUDE MODULE remove-gallery.php
+			$dir = plugin_dir_path( __FILE__ );
+			include $dir.'modules/remove-album.php';
+		}
+		
+		$tempfile = plugin_dir_path( __FILE__ ) . "admin/album-overview.php";
+		include $tempfile;
+		echo '<div class="imagine-formtable-wrap"></div>';
 	}
 	
 	// ----------------------------------------------------------------------------------------------------------------------------------Add/Edit/Update Template --------  //
@@ -515,8 +542,8 @@ function imagine_ajaxsubmit() {
 	
 	/* NEED TO ADD TYPE */
 	
-	if(isset($_POST['metaboxdata'])) {
-		$data = $_POST['metaboxdata'][0];
+	if(isset($_POST['metaboxgallery'])) {
+		$data = $_POST['metaboxgallery'][0];
 		if (isset($data['gid']) && ctype_digit($data['gid'])) {
 			$gid = intval($data['gid']);
 		} else {
@@ -538,7 +565,28 @@ function imagine_ajaxsubmit() {
 		}
 		
 		$gallery = $wpdb->get_row('SELECT * FROM wp_imagine_gallery WHERE galleryId = "$gid"');
-		$original_input = "<div class='imagine' gid='".esc_attr($gid)."' template='".esc_attr($temp)."' layovertemp='".esc_attr($layovertemplate)."'></div>";
+		$original_input = "<div class='imagine' type='gallery' gid='".esc_attr($gid)."' template='".esc_attr($temp)."' layovertemp='".esc_attr($layovertemplate)."'></div>";
+		$html_encoded = htmlentities($original_input);
+		echo $html_encoded;
+		
+	}
+    
+    if(isset($_POST['metaboxalbum'])) {
+		$data = $_POST['metaboxalbum'][0];
+		if (isset($data['aid']) && ctype_digit($data['aid'])) {
+			$aid = intval($data['aid']);
+		} else {
+			echo "<p class='fail'>Error saving.</p>";
+			break 1;
+		}
+		if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
+			$temp = sanitize_text_field($data['template']);
+		} else {
+			echo "<p class='fail'>Error saving.</p>";
+			break 1;
+		}
+		
+		$original_input = "<div class='imagine' type='album' aid='".esc_attr($aid)."' template='".esc_attr($temp)."'></div>";
 		$html_encoded = htmlentities($original_input);
 		echo $html_encoded;
 		
@@ -612,7 +660,6 @@ function imagine_ajaxsubmit() {
 				// add default gallery template -- PER GALLERY
 				$template = $opt1;
 			}
-			
 			$opt = get_option('optionImagineDefaultLayoverTemplate');
 			
 			if ( isset( $_GET['imagine'][0]['ltemp'] ) ) {

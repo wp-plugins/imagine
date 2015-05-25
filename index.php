@@ -226,7 +226,7 @@ add_action('admin_enqueue_scripts', 'initadminscript');
 function initadminscript() {
 		
 	
-	wp_enqueue_script('imagine-ajax', plugin_dir_url(__FILE__) . 'js/xajax.js', array('jquery', 'jquery-ui-core', 'jquery-ui-draggable'),'1.0', false);
+	wp_enqueue_script('imagine-ajax', plugin_dir_url(__FILE__) . 'js/xajax.js', array('jquery', 'jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-droppable'),'1.0', false);
 	wp_enqueue_style('imagine-admin-css', plugin_dir_url(__FILE__) . 'imagine-admin.css');
 	wp_localize_script('imagine-ajax', 'imagineajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 	wp_enqueue_style('uistyle', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');

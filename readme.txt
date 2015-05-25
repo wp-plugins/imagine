@@ -11,13 +11,13 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 == Description ==
 
 <p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
-<p>As from now this gallery is still in production fase but i would be happy to get some response and maybe even some requests for functionality.</p>
+<p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
 
 <p>
 <strong>Future design plans are;</strong>
 <ul>
-<li>More settings</li>
-<li>Building more default templates</li>
+<li>More settings.</li>
+<li>Building more default templates.</li>
 <li>WYSIWIG template creation.</p>
 </ul>
 </p>
@@ -41,20 +41,31 @@ Yes, you can. Even with different templates (and layover templates for image vie
 
 = Can i create albums? =
 
-Albums can be created but are not fully functional yet.
+Yes.
 
 == Screenshots ==
 
-1. Front-end Screenshot
-2. Gallery edit screen
+
 
 == Changelog ==
+= 0.99.1 =
+* Added Edit Album section.
+* Updated metabox to output Album.
+* Some minor fixes.
 
-= 0.9 =
+= 0.99 =
 * Created the plugin and added to wp-plugins for testing.
 
 
 == Upgrade Notice ==
+
+
+== Arbitrary section ==
+
+
+== A brief Markdown Example ==
+
+Ordered list:
 
 1. Load your images with ajax!
 2. Use multiple galleries with different templates on one page!
