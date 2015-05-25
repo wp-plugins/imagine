@@ -31,7 +31,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <li>More settings.</li>
 <li>Building more default templates.</li>
 <li>WYSIWIG template creation.</li>
-<li>Improve.</li>
+<li>Other improvements.</li>
 </ul>
 </p>
 
