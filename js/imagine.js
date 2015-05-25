@@ -107,7 +107,7 @@
 		
 		
 		/* imagineGallery function */
-		$.imagineGallery = function (id, temp, ltemp, tselect) {
+		$.imagineGallery = function (inside, id, temp, ltemp, tselect) {
             /* select imagine galleries to load, can be multiple */
 			var imagine = $('.imagine[type="gallery"]');
             /* if overwritten only one instance of .imagine is loaded. */
@@ -146,6 +146,11 @@
                         /* use function call id */
                         var gid = id;
                     }
+                    if ( inside == 'true' ) {
+                        var ins = 'true';
+                    }
+                    
+                    
                     /* push some data for imagine-ajaxsubmit */
                     var data = Array();
                     data.push( {
@@ -153,8 +158,12 @@
                         type: type, 
                         template: temp, 
                         ltemp: layovertemp, 
-                        tselect: tselect
+                        tselect: tselect,
+                        inside: ins
                     });
+                    
+                    
+                    
                     /* send the data to admin-ajax.php */
                     $.get(imagineajax.ajaxurl, {
                         imagine : data,
@@ -180,7 +189,7 @@
 			if ( content.length == false ) {
                 $(this).append('<div gid="'+gid+'" type="gallery" class="imagine"></div>');
                 /* let $.imagineGallery run on one instance only. OVERRIDING the GID */
-                $.imagineGallery(gid);
+                $.imagineGallery('true', gid);
             /* if found just show the gallery */
 			} else if ( content.length == true ) {
                 $('.imagine[type="gallery"][gid="'+gid+'"]').fadeIn(1000);
