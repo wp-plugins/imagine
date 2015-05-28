@@ -58,8 +58,8 @@ Yes.
 
 == Screenshots ==
 
-1.
-2.
+1. Imagine Gallery on the front end (in TwentyFifteen theme).
+2. Gallery edit screen
 
 == Changelog ==
 = 0.99.2 =
