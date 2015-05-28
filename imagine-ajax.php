@@ -591,6 +591,27 @@ function imagine_ajaxsubmit() {
 		echo $html_encoded;
 		
 	}
+    
+    if(isset($_POST['metaboximage'])) {
+		$data = $_POST['metaboximage'][0];
+		if (isset($data['iid']) && ctype_digit($data['iid'])) {
+			$iid = intval($data['iid']);
+		} else {
+			echo "<p class='fail'>Error saving.</p>";
+			break 1;
+		}
+        if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
+			$temp = sanitize_text_field($data['template']);
+		} else {
+			echo "<p class='fail'>Error saving.</p>";
+			break 1;
+		}
+		
+		$original_input = "<div class='imagine' type='image' iid='".esc_attr($iid)."' template='".$temp."'></div>";
+		$html_encoded = htmlentities($original_input);
+		echo $html_encoded;
+		
+	}
 	
 	/*
 	
@@ -685,8 +706,8 @@ function imagine_ajaxsubmit() {
 			echo '</style>';
 			
 		
-			} 
-            if (isset($_GET['imagine'][0]['album'])) {
+        } 
+        if (isset($_GET['imagine'][0]['album'])) {
 					
 			
 				/* add support for default template,, wp-options */
@@ -710,7 +731,33 @@ function imagine_ajaxsubmit() {
 				echo '</style>';
 				
 			
-			}
+        }
+    
+    if (isset($_GET['imagine'][0]['image'])) {
+					
+			
+				/* add support for default template,, wp-options */
+				 
+				
+				$template = sanitize_text_field($_GET['imagine'][0]['template']);
+				$temp = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'image' AND tempName = '$template'");
+				$tslug = $temp->tempSlug;
+				
+				$tid = $temp->tempId;
+				$css = $temp->tempCss;
+				$php = $temp->tempPhp;
+				$path = $temp->tempPath;
+				$filecss = $path . $css;
+				$filephp = $path . $php;
+				include $filephp;
+					
+					
+				echo '<style>';
+				include $path.'css/'.$css;
+				echo '</style>';
+				
+			
+        }
 		
 		if(isset($_POST['viewimage'])) {
 			$gid = intval($_POST['viewimage']['gid']);

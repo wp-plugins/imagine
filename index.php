@@ -135,6 +135,7 @@ function register_imagine() {
 	$ext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Extended'");
 	$min = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Minified'");
 	$alb = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
+    $imgmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Image Minified'");
 	$today = date("Y-m-d"); 
 	$time = date('H:i:s');
 	
@@ -186,6 +187,21 @@ function register_imagine() {
 					)
 				);		
 				}	
+    if ($imgmin == NULL) {
+	$wpdb -> insert($table_templates, array(
+						"tempName" => "Imagine Image Minified", 
+						"tempType" => "image",
+						"tempSlug" => "imagine-image-minified",
+						"tempDate" => $today,
+						"tempTime" => $time,
+						"tempAuthor" => "imagine",
+						"tempPath" => $dir,
+						"tempCss" => 'imagine-image-minified.css',
+						"tempPhp" => 'imagine-image-minified.php',
+						"tempDesc"=> "Showcase Image minified", 
+					)
+				);		
+				}
 	
 }
 
