@@ -18,6 +18,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <ul>
 <li>Galleries</li>
 <li>Image upload</li>
+<li>Single image</li>
 <li>Albums</li>
 <li>Code generator</li>
 <li>Custom templates (for now only hardcoded into php/css)</li>
@@ -56,7 +57,7 @@ Yes, you can. Even with different templates (and layover templates for image vie
 
 = Can i create albums? =
 
-Yes.
+Yes. With the same options as galleries.
 
 == Screenshots ==
 
@@ -68,6 +69,10 @@ Yes.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.3 =
+* Added single Image capabilities.
+* Started a <a href="http://tocadovision.nl/imagine/" target="blank">Wiki</a>.
+
 = 0.99.2 =
 * Added Wordpress Multisite support.
 

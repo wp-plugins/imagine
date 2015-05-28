@@ -3,7 +3,7 @@
  * Plugin Name: Imagine
  * Author: Martijn Michel, TocadoVision
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.2
+ * Version: 0.99.3
  */
  
  
