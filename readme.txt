@@ -13,6 +13,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
 <p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
 
+
 <p><strong>Current features</strong>
 <ul>
 <li>Galleries</li>
@@ -21,6 +22,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <li>Code generator</li>
 <li>Custom templates (for now only hardcoded into php/css)</li>
 <li>Some settings</li>
+<li><a href="http://tocadovision.nl/imagine/" target="blank">Development DOCS</a></li>
 </ul>
 </p>
 
@@ -57,6 +59,8 @@ Yes, you can. Even with different templates (and layover templates for image vie
 Yes.
 
 == Screenshots ==
+
+<p>View more docs/screenshots <a href="http://tocadovision.nl/imagine/" target="blank">here</a>.</p>
 
 1. Imagine Gallery on the front end (in TwentyFifteen theme).
 2. Gallery edit screen.
