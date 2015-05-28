@@ -59,7 +59,9 @@ Yes.
 == Screenshots ==
 
 1. Imagine Gallery on the front end (in TwentyFifteen theme).
-2. Gallery edit screen
+2. Gallery edit screen.
+3. The code generator.
+4. Album edit screen.
 
 == Changelog ==
 = 0.99.2 =
