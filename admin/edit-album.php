@@ -22,7 +22,7 @@
     echo '<p>Drag&drop a gallery into the album (on the right).</p>';
    echo '<div class="addGal">';
     // Adding galleries into the album
-    $galleries = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'_imagine_gallery');
+    $galleries = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'imagine_gallery');
     foreach( $galleries as $gal ) {
         $gname = $gal -> galleryName;
         $gid = $gal -> galleryId;

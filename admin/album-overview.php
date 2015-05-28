@@ -1,7 +1,6 @@
 <?php 
 global $wpdb;
 
-echo '<p class="imagine-notice">Albums are not yet fully functional. This plugin is in development.</p>';
 echo '<div class="imagine-album-overview-wrap">';
 
 echo '<h2>Edit albums</h2>';
