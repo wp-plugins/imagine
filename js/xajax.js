@@ -607,6 +607,24 @@
 				$('#imagine_sectionid .inside .response').html('<span style="color: #a8a8a8">// please copy the following code to your content</span></br>').append(response).fadeIn();
 			});
 		});
+        
+        $('[name="metabox-option-image"]').on( 'change', function() {
+			
+			var metaboxData = Array();
+			var img = $("[name='metabox-option-image']").val();
+			var temp = $("[name='metabox-option-image-template']").val();
+			
+			metaboxData.push({iid: img, template: temp});
+    		console.log(metaboxData);
+			$.post(imagineajax.ajaxurl, {
+				metaboximage : metaboxData,
+				dataType:"html",
+				action : 'imagine-ajaxsubmit'
+			}, function(response) {
+				console.log(response);
+				$('#imagine_sectionid .inside .response').html('<span style="color: #a8a8a8">// please copy the following code to your content</span></br>').append(response).fadeIn();
+			});
+		});
 		
 	});
 })(jQuery);

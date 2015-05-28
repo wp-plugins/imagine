@@ -103,7 +103,80 @@
 		};
 		
 		
+		$.imagineImage = function (id, temp, ltemp, tselect, width, height) {
+            
+            /* to add:
+            * width and height overwrite
+            */
+            
+			var imagine = $('.imagine[type="image"]');
+			if(imagine.length > 0) {
+				
+					imagine.each( function() {
+							$(this).hide();
+							
+							
+							
+							
+							if ( temp == undefined ) {
+								var temp = $(this).attr('template');
+								
+							}
+							
+							if ( ltemp == undefined ) {
+								var layovertemp = $(this).attr('layovertemp');
+							}
+							
+							if (tselect == undefined) {
+								tselect = $(this).attr('tempselect');
+								if (tselect == undefined) {
+									tselect = false;
+								}
+							}
+							
+							if ( type == undefined ) {
+								var type = 'image'; 
+							}
+							
+							
+							
+							if ( id == undefined ) {
+								var iid = $(this).attr('iid');
+							} else {
+								var iid = id;
+							}
+								
+							var data = Array();
+							data.push( {
+								image:iid, 
+								type: type, 
+								template: temp, 
+								ltemp: layovertemp, 
+								tselect: tselect
+							});
+							
+							
+								
+							$.get(imagineajax.ajaxurl, {
+								imagine : data,
+								action : 'imagine-ajaxsubmit',
+								dataType: 'html',
+							}, function(response, data, xhr) {
+								
+								
+									
+									$('.imagine[iid="'+iid+'"][type="image"]').fadeIn(1000).html(response);
+									
+									
+							});
+								
 		
+						
+					});
+					
+			
+			}
+		};
 		
 		
 		/* imagineGallery function */
@@ -268,6 +341,7 @@
 		*/
 		$.imagineAlbum();
 		$.imagineGallery();
+        $.imagineImage();
 	});
 	
 	
