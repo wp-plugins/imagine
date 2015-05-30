@@ -10,11 +10,16 @@
 	$gdesc = $gallery -> galleryDesc;
 
     // add checkup to see if this gallery is currently being viewed inside an album container. If so, dont show the title (and / or the description) //
-    $inside = $_GET['imagine'][0]['inside'];
-    if ( $inside !== 'true' ) {
-	   echo '<h2>'.esc_html($gname).'</h2>';
-        
+    if ( isset( $_GET['imagine'][0]['inside'] )) {
+        $inside = sanitize_text_field($_GET['imagine'][0]['inside']);
+        if ( $inside !== 'true' ) {
+           echo '<h2>'.esc_html($gname).'</h2>';
+
+        }
+    } else if ( !isset( $_GET['imagine'][0]['inside'] ) || $_GET['imagine'][0]['inside'] == NULL) {
+        echo '<h2>'.esc_html($gname).'</h2>';
     }
+    
     echo '<p>'.esc_html($gdesc).'</p>';
 	foreach ($imgs as $img) {
 		$filename = $img -> imgFilename;
