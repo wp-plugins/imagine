@@ -3,7 +3,7 @@
  * Plugin Name: Imagine
  * Author: Martijn Michel, TocadoVision
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.3
+ * Version: 0.99.4
  */
  
  
@@ -128,6 +128,9 @@ function register_imagine() {
 	if ( get_option('optionImagineDefaultGalleryTemplate') == NULL) { // default template
 		update_option('optionImagineDefaultGalleryTemplate', 'Imagine Gallery Extended'); 
 	}
+    if ( get_option('optionImagineDefaultAlbumTemplate') == NULL) { // default template
+		update_option('optionImagineDefaultAlbumTemplate', 'Imagine Album Minified'); 
+	}
 	if ( get_option('optionImagineDefaultLayoverTemplate') == NULL ) { // default template
 		update_option('optionImagineDefaultLayoverTemplate', 'imagine'); 
 	}
@@ -233,6 +236,10 @@ function on_delete_blog( $tables ) {
 }
 add_filter( 'wpmu_drop_tables', 'on_delete_blog' );
 
+add_action('plugins_loaded', 'imagine_load_textdomain');
+function imagine_load_textdomain() {
+	load_plugin_textdomain( 'imagine-languages', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+}
 
 
 function admin_imagine() {
@@ -245,6 +252,9 @@ function admin_imagine() {
 }
 
 add_action('admin_menu', 'admin_imagine');
+
+
+
 
 function loadsettings() {
 	echo '<div class="imagine-wrap">';
@@ -314,4 +324,5 @@ function initimagine() {
 }
 
 include 'imagine-ajax.php';
+include 'modules/shortcode.php';
 ?>

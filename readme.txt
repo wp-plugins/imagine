@@ -69,6 +69,11 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.4 =
+* Added wordpress shortcode capabilities.
+* Added default album template setting.
+* Added default image template setting.
+
 = 0.99.3 =
 * Added single Image capabilities.
 * Started a <a href="http://tocadovision.nl/imagine/" target="blank">Wiki</a>.
