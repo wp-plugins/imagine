@@ -32,6 +32,48 @@
 			</td>
 		</tr>
 		
+		<tr>
+			<th scope="row"> Default Album template: </th>
+			<td>
+			<select name="optionImagineDefaultAlbumTemplate">
+				<?php $option = get_option('optionImagineDefaultAlbumTemplate'); 
+					global $wpdb;
+					$gtemps = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = 'album'");
+					foreach($gtemps as $tmp) {
+						$tname = $tmp->tempName;
+						
+                        echo '<option value="'.esc_attr($tname).'"> ' . esc_html($tname) . '</option>';
+						
+					}
+                    
+				?>
+				
+			</select>
+                <span class="sMsg"><?php echo 'Current default: ' .$option; ?></span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th scope="row"> Default Image template: </th>
+			<td>
+			<select name="optionImagineDefaultImageTemplate">
+				<?php $option = get_option('optionImagineDefaultImageTemplate'); 
+					global $wpdb;
+					$gtemps = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = 'image'");
+					foreach($gtemps as $tmp) {
+						$tname = $tmp->tempName;
+						
+                        echo '<option value="'.esc_attr($tname).'"> ' . esc_html($tname) . '</option>';
+						
+					}
+                    
+				?>
+				
+			</select>
+                <span class="sMsg"><?php echo 'Current default: ' .$option; ?></span>
+			</td>
+		</tr>
+		
 		
 		
 		<tr>
