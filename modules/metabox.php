@@ -2,8 +2,11 @@
 	global $wpdb;
 	$galleries = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_gallery');
 	$albums = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_albums');
+
+    $imgs = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_img');
 	$galtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="gallery"');
 	$albtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="album"');
+    $imgtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="image"');
 	$overlaytemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="overlay"');
 ?>
 
@@ -11,6 +14,7 @@
         <p>Select a type to add:</p> 
         <h3 class="bt button" rel="gallery">Gallery</h3>
         <h3 class="bt button" rel="album">Album</h3>
+        <h3 class="bt button" rel="image">Image</h3>
     </div>  
 
 <?php    
@@ -75,6 +79,35 @@
     
 	
 	echo '</div>';
+
+
+
+// single image
+    echo '<div rel="image" class="form">';
+    echo '<div class="row">Image: </div>';
+	echo '<select name="metabox-option-image">';
+    
+	foreach ($imgs as $img) {
+		$imgname = $img-> imgFilename;
+		$iid = $img -> imgId;
+		
+		echo esc_html($aname).'<option value="'.esc_attr($iid).'" imgname="'.esc_attr($imgname).'" iid="'.esc_attr($iid).'" >'.esc_html($imgname).'</option>'; 
+	}
+	echo '</select>';
+    
+    echo '</br>';
+    echo '<div class="row">Template: </div>';
+	echo '<select name="metabox-option-image-template">';
+	foreach($imgtemp as $template) {
+		$tname = $template -> tempName;
+		echo '<option value="'.esc_attr($tname).'">'.esc_html($tname).'</option>';
+	}
+	echo '</select>';
+    
+	
+	echo '</div>';
+
+
 	echo '<div id="#msg"></div>';
 	
 	echo '<div class="response"></div>'
