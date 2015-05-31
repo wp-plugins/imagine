@@ -18,8 +18,8 @@
 	
 
 	
-	echo '<h3 class="formhead" aid="' . esc_attr($aedit) . '">Editing "'.esc_html($aname).'"</h3>';
-    echo '<p>Drag&drop a gallery into the album (on the right).</p>';
+	echo '<h3 class="formhead" aid="' . esc_attr($aedit) . '">' . __('Editing','imagine-languages') . ' "'.esc_html($aname).'"</h3>';
+    echo '<p>' . __('Drag&drop a gallery into the album (on the right).','imagine-languages') . '</p>';
    echo '<div class="addGal">';
     // Adding galleries into the album
     $galleries = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'imagine_gallery');
@@ -34,7 +34,7 @@
 	echo '<div class="aContain">';
     
     if ( empty($acontent)) {
-        echo 'No galleries included yet.';
+        echo __('No galleries included yet.', 'imagine-languages');
         
     } else {
         $gallery = explode(',', $acontent);
@@ -42,11 +42,11 @@
             $data = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gal'");
             $gname = $data -> galleryName;
             $gid = $data -> galleryId;
-            echo '<div class="gal" gid="' . esc_attr($gal) . '">ID:' . esc_html($gal) . ' - Name: ' . esc_html($gname) . '<span style="float:right; margin-right: 12px" ref="del">X</span></div>';
+            echo '<div class="gal" gid="' . esc_attr($gal) . '">ID:' . esc_html($gal) . ' - Name: ' . esc_html($gname) . '<span style="float:right; margin-right: 12px" ref="del"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></span></div>';
         }
     }
     echo '</div>';
 
-    echo '<div class="button button-primary" id="saveAlbum" style="float:left; clear:both">Save</div>';
+    echo '<div class="button button-primary" id="saveAlbum" style="float:left; clear:both">' . __('Save','imagine-languages') . '</div>';
  
 ?>

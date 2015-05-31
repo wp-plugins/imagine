@@ -23,20 +23,27 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <li>Code generator</li>
 <li>Custom templates (for now only hardcoded into php/css)</li>
 <li>Some settings</li>
+<li>Languages (Dutch and English are included.)</li>
 <li><a href="http://tocadovision.nl/imagine/" target="blank">Development DOCS</a></li>
 </ul>
 </p>
 
 
 <p>
-<strong>Future design plans are;</strong>
+<strong>Roadmap to v1.0</strong>
 <ul>
 <li>More settings.</li>
 <li>Building more default templates.</li>
-<li>WYSIWIG template creation.</li>
+<li>Better image resizing.</li>
 <li>Other improvements.</li>
 </ul>
 </p>
+
+<p>
+<strong>After v1.0</strong>
+<ul>
+<li>WYSIWYG template creation.</li>
+</ul>
 
 == Installation ==
 
@@ -69,6 +76,10 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.5 =
+* Added Wordpress Language support.
+* Created Dutch language mo/po files.
+
 = 0.99.4 =
 * Added wordpress shortcode capabilities.
 * Added default album template setting.

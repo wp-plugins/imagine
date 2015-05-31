@@ -9,18 +9,17 @@
     $imgtemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="image"');
 	$overlaytemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="overlay"');
 ?>
-
     <div class="metaoptions">
-        <p>Select a type to add:</p> 
-        <h3 class="bt button" rel="gallery">Gallery</h3>
-        <h3 class="bt button" rel="album">Album</h3>
-        <h3 class="bt button" rel="image">Image</h3>
+        <p><?php __('Select a type to add', 'imagine-languages'); ?>:</p> 
+        <h3 class="bt button" rel="gallery"><?php __('Gallery', 'imagine-images'); ?></h3>
+        <h3 class="bt button" rel="album"><?php __('Album', 'imagine-images'); ?></h3>
+        <h3 class="bt button" rel="image"><?php __('Image', 'imagine-images'); ?></h3>
     </div>  
 
 <?php    
     // Galleries
 	echo '<div rel="gallery" class="form">';
-    echo '<div class="row">Gallery: </div>';
+    echo '<div class="row">' . __('Gallery', 'imagine-images') . ':</div>';
 	echo '<select name="metabox-option-gallery">';
     
 	foreach ($galleries as $gallery) {
@@ -32,7 +31,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">Template: </div>';
+    echo '<div class="row">' . __('Template', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-template">';
 	foreach($galtemp as $template) {
 		$tname = $template -> tempName;
@@ -41,7 +40,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">Image template: </div>';
+    echo '<div class="row">' . __('Layover template', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-layovertemplate">';
 	echo '<option value="imagine">Imagine</option>';
 	
@@ -57,7 +56,7 @@
 
     //albums
     echo '<div rel="album" class="form">';
-    echo '<div class="row">Album: </div>';
+    echo '<div class="row">' . __('Album', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-album">';
     
 	foreach ($albums as $album) {
@@ -69,7 +68,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">Template: </div>';
+    echo '<div class="row">' . __('Template', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-album-template">';
 	foreach($albtemp as $template) {
 		$tname = $template -> tempName;
@@ -84,7 +83,7 @@
 
 // single image
     echo '<div rel="image" class="form">';
-    echo '<div class="row">Image: </div>';
+    echo '<div class="row">' . __('Image', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-image">';
     
 	foreach ($imgs as $img) {
@@ -96,7 +95,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">Template: </div>';
+    echo '<div class="row">' . __('Template', 'imagine-images') . ': </div>';
 	echo '<select name="metabox-option-image-template">';
 	foreach($imgtemp as $template) {
 		$tname = $template -> tempName;

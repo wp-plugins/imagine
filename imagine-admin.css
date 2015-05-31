@@ -39,6 +39,7 @@
     clear:none;
     padding-left: 20px;
 }
+/*
 .imagine-wrap .wp-list-table a {
 	background:white;
 	border:1px solid #ccc;
@@ -46,6 +47,7 @@
 	border-radius:5px;
 	margin: 0 3px 0 0;
 }
+*/
 .row {
     width: 150px;
         float:left;
@@ -207,6 +209,7 @@ thead th span {
     width:100%;
     left: 0;
     top:0;
+    font-size: 1.1em;
 }
 .addGal {
     width: auto;

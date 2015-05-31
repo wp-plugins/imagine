@@ -28,9 +28,9 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 	$ext = pathinfo($file_name, PATHINFO_EXTENSION);
 	
 	if ($_FILES['image-upload']["error"][$i] > 0) {
-		echo "<p class='fail'>Error: " . $_FILES['image-upload']["error"][$i] . "</p>";
+		echo "<p class='fail'>' . __('Error', 'imagine-images') . ': " . $_FILES['image-upload']["error"][$i] . "</p>";
 	} else if ( !in_array($ext , $extensions) ) {
-		echo "<p class='fail'>Error: filetype .".$ext." not allowed.</p>";	
+		echo "<p class='fail'>' . __('Error', 'imagine-images') . ': ' . __('filetype', 'imagine-images') . ' .".$ext." ' . __('not allowed.', 'imagine-images') . '</p>";	
 	} else {
 		if (!file_exists($plugindir . '/imagine/')) {
 			mkdir($plugindir . '/imagine/', 0777, true);
@@ -75,7 +75,7 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 		imagejpeg($tmp_img, $plugindir . '/imagine/' . $galslug . '/thumbs/thumb_' . esc_attr($file_name));
 
 		move_uploaded_file($file_tmp, $plugindir . '/imagine/' . $galslug . '/' . esc_attr($file_name));
-		echo "<p class='succes'>Uploaded: " . esc_html($file_name) . "</p>";
+		echo "<p class='succes'>' . __('Uploaded', 'imagine-images') . ': " . esc_html($file_name) . "</p>";
 
 		$today = date("Y-m-d");
 		$time = date('H:i:s');

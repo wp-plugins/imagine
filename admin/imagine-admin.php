@@ -4,7 +4,7 @@ global $wpdb;
 
 echo '<p class="imagine-notice">';
 echo __('This plugin is still in development.', 'imagine-languages') . '</br>';
-echo __('If you have any questions/ suggestions/ please consider to notify me through the plugin support forum located', 'imagine-languages') . '<a href="https://wordpress.org/support/plugin/imagine" target="blank">' . __('here', 'imagine-languages') . '</a>.'; 
+echo __('If you have any questions/ suggestions/ please consider to notify me through the plugin support forum located', 'imagine-languages') . ' ' . '<a href="https://wordpress.org/support/plugin/imagine" target="blank">' . __('here', 'imagine-languages') . '</a>. '; 
 echo __('Any feedback is welcome too.', 'imagine-languages');
 echo '</p>';
 

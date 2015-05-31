@@ -20,7 +20,7 @@ function imagine_ajaxsubmit() {
 			
 			if ( $input == 'optionImagineThumbnailWidth' ) {
 				if (!ctype_digit($value)) {
-	  				echo "<p class='fail'>Only letters and white space allowed</p>";
+	  				echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else { 
 					update_option($input, $value);
@@ -28,7 +28,7 @@ function imagine_ajaxsubmit() {
 				}
 			} else {
 				if (!ctype_alnum( str_replace(' ', '', $value ))) {
-	  				echo "<p class='fail'>Only letters and white space allowed</p>";
+	  				echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else { 
 					update_option($input, $value);
@@ -36,7 +36,7 @@ function imagine_ajaxsubmit() {
 				}
 			}
 		}
-		echo '<p class="succes">Saved.</p>';
+		echo '<p class="succes">' . __('Saved.', 'imagine-images') . '</p>';
 		$tempfile = plugin_dir_path( __FILE__ ) . "admin/settings.php";
 		include_once $tempfile;
 	}
@@ -64,7 +64,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['galName'] ) ) {
 				// stop if contains invalid chars
 				if ( !ctype_alpha( str_replace(' ', '', $data['galName'] ))) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$galname = sanitize_text_field($data['galName']);
@@ -76,7 +76,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['galSlug'] ) ) {
 				// stop if contains invalid chars
 				if ( !ctype_alnum( str_replace(' ', '', $data['galSlug']) ) ) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$galslug = sanitize_text_field($data['galSlug']);
@@ -97,7 +97,7 @@ function imagine_ajaxsubmit() {
 			
 			if(isset($data['galDesc'])) {	
 				if ( !ctype_alnum( str_replace(' ', '', $data['galDesc']) ) ) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$galdesc = sanitize_text_field($data['galDesc']);
@@ -126,10 +126,10 @@ function imagine_ajaxsubmit() {
 							"galleryPreviewImg"=>"unset"
 						)
 					);
-					echo '<p class="succes">Gallery '.$galname.' created succesfully.</p>';
+					echo '<p class="succes">' . __('Gallery', 'imagine-images') . ' '.$galname.' ' . __('created succesfully.', 'imagine-images') . '</p>';
 				}
 			} else {
-				echo '<p class="fail">Gallery name exists already. Please choose another name.</p>';
+				echo '<p class="fail">' . __('Gallery name already exists. Please choose another name.', 'imagine-images') . '</p>';
 			}
 		}
 		if (isset($_GET['imagine']['template'])) {
@@ -147,7 +147,7 @@ function imagine_ajaxsubmit() {
 			
 			if(isset($gal['galName'])) {	
 				if ( !preg_match("/^[a-zA-Z0-9 ]*$/", $gal['galName'] ) ) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$galname = sanitize_text_field($gal['galName']);
@@ -158,7 +158,7 @@ function imagine_ajaxsubmit() {
 			
 			if(isset($gal['galDesc'])) {	
 				if ( !preg_match("/^[a-zA-Z0-9!?,. ]*$/", $gal['galDesc'] ) ) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$galdesc = sanitize_text_field($gal['galDesc']);
@@ -182,7 +182,7 @@ function imagine_ajaxsubmit() {
 	if (isset($_POST['gdel'])) {
 		$gid = $_POST['gdel'];
 		if ( !ctype_digit($gid) ) {
-			echo "<p class='fail'>Unable to remove gallery.</p>";
+			echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 		} else {
 			// INCLUDE MODULE remove-gallery.php
 			$dir = plugin_dir_path( __FILE__ );
@@ -198,7 +198,7 @@ function imagine_ajaxsubmit() {
 	if (isset($_POST['gedit'])) {
 		
 		if ( !ctype_digit($_POST['gedit']) ) {
-			echo "<p class='fail'>Unable to load gallery.</p>";
+			echo "<p class='fail'>" . __('Unable to load gallery.', 'imagine-images') . "</p>";
 		} else {
 			// INCLUDE edit-gallery.php
 			$tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-gallery.php";
@@ -222,7 +222,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['albumName'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z ]*$/", $data['albumName'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$aname = sanitize_text_field($data['albumName']);
@@ -233,7 +233,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['albumSlug'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z ]*$/", $data['albumSlug'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$aslug = sanitize_text_field($data['albumSlug']);
@@ -246,7 +246,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['albumDesc'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z0-9!?,. ]*$/", $data['albumDesc'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$adesc = sanitize_text_field($data['albumDesc']);
@@ -283,10 +283,10 @@ function imagine_ajaxsubmit() {
 							"albumPreviewImg"=>"unset"
 						)
 					);
-					echo '<p class="succes">Album '.$aname.' created succesfully.</p>';
+					echo '<p class="succes">' . __('Album', 'imagine-images') . ' '.$aname.' ' . __('created succesfully', 'imagine-images') . '.</p>';
 				}
 			} else {
-				echo '<p class="fail">Album name exists already. Please choose another name.</p>';
+				echo '<p class="fail">' . __('Album name already exists. Please choose another name.', 'imagine-images') . '</p>';
 			}
 		}
 		if (isset($_GET['imagine']['template'])) {
@@ -312,7 +312,7 @@ function imagine_ajaxsubmit() {
 	if (isset($_POST['albumedit'])) {
 		
 		if ( !ctype_digit($_POST['albumedit']) ) {
-			echo "<p class='fail'>Unable to load album.</p>";
+			echo "<p class='fail'>" . __('Unable to load album.', 'imagine-images') . "</p>";
 		} else {
 			// INCLUDE edit-gallery.php
 			$tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-album.php";
@@ -323,7 +323,7 @@ function imagine_ajaxsubmit() {
     if (isset($_POST['adel'])) {
 		$aid = $_POST['adel'];
 		if ( !ctype_digit($aid) ) {
-			echo "<p class='fail'>Unable to remove album.</p>";
+			echo "<p class='fail'>" . __('Unable to remove album.', 'imagine-images') . "</p>";
 		} else {
 			// INCLUDE MODULE remove-gallery.php
 			$dir = plugin_dir_path( __FILE__ );
@@ -349,7 +349,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['tmpName'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z ]*$/", $data['tmpName'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$tmpname = sanitize_text_field($data['tmpName']);
@@ -360,7 +360,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['tmpDesc'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z0-9!?,. ]*$/", $data['tmpDesc'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$tmpdesc = sanitize_text_field($data['tmpDesc']);
@@ -393,7 +393,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['tmpName'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z ]*$/", $data['tmpName'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$tmpname = sanitize_text_field($data['tmpName']);
@@ -404,7 +404,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['tmpSlug'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z ]*$/", $data['tmpSlug'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$tmpslug = sanitize_text_field($data['tmpSlug']);
@@ -418,7 +418,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $data['tmpDesc'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z0-9!?,. ]*$/", $data['tmpDesc'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$adesc = sanitize_text_field($data['tmpDesc']);
@@ -444,7 +444,7 @@ function imagine_ajaxsubmit() {
 			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = '$tmptype' && tempName = '$tmpname'");
 			if ($exist != NULL) {
 				
-				echo 'Template name exists.';
+				echo __('Template name already exists. Please choose another name.', 'imagine-languages');
 				} else {
 					$wpdb -> insert($wpdb->prefix.'imagine_templates', array(
 						"tempName" => $tmpname, 
@@ -482,7 +482,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ($_POST['editimages'][$i]['gid']) && ctype_digit($_POST['editimages'][$i]['gid'])) {
 				$gid = intval($_POST['editimages'][$i]['gid']);	
 			} else {
-				echo '<p class="fail">Error uploading image.</p>';
+				echo '<p class="fail">' . __('Error uploading image.', 'imagine-images') . '</p>';
 				break 1;
 			}
 			
@@ -490,7 +490,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ($_POST['editimages'][$i]['imgid']) && ctype_digit($_POST['editimages'][$i]['imgid'])) {
 				$imgid = intval($_POST['editimages'][$i]['imgid']);	
 			} else {
-				echo '<p class="fail">Error uploading image.</p>';
+				echo '<p class="fail">' . __('Error uploading image.', 'imagine-images') . '</p>';
 				break 1;
 			}
 			
@@ -499,7 +499,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $_POST['editimages'][$i]['imgDesc'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z0-9!?,. ]*$/", $_POST['editimages'][$i]['imgDesc'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$imgdesc = sanitize_text_field($_POST['editimages'][$i]['imgDesc']);
@@ -510,7 +510,7 @@ function imagine_ajaxsubmit() {
 			if ( isset ( $_POST['editimages'][$i]['imgAltTitle'] ) ) {
 				// stop if contains invalid chars
 				if (!preg_match("/^[a-zA-Z0-9 ]*$/", $_POST['editimages'][$i]['imgAltTitle'] )) {
-  					echo "<p class='fail'>Only letters and white space allowed</p>";
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
 					break 1;
 				} else {
 					$imgtitle = sanitize_text_field($_POST['editimages'][$i]['imgAltTitle']);
@@ -534,7 +534,7 @@ function imagine_ajaxsubmit() {
 		$tempfile = plugin_dir_path( __FILE__ ) . "admin/edit-gallery.php";
 		include $tempfile;
 		
-		echo '<p>Opgeslagen in database.</p>';
+		echo '<p class="succes">' . __('Saved succesfully.', 'imagine-images') . '</p>';
 		
 	}
 	
@@ -547,20 +547,20 @@ function imagine_ajaxsubmit() {
 		if (isset($data['gid']) && ctype_digit($data['gid'])) {
 			$gid = intval($data['gid']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
 			$temp = sanitize_text_field($data['template']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		
 		if (isset($data['layovertemplate']) && preg_match("/^[a-zA-Z ]*$/", $data['layovertemplate'] )) {
 			$layovertemplate = sanitize_text_field($data['layovertemplate']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		
@@ -577,13 +577,13 @@ function imagine_ajaxsubmit() {
 		if (isset($data['aid']) && ctype_digit($data['aid'])) {
 			$aid = intval($data['aid']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
 			$temp = sanitize_text_field($data['template']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		
@@ -599,13 +599,13 @@ function imagine_ajaxsubmit() {
 		if (isset($data['iid']) && ctype_digit($data['iid'])) {
 			$iid = intval($data['iid']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
         if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
 			$temp = sanitize_text_field($data['template']);
 		} else {
-			echo "<p class='fail'>Error saving.</p>";
+			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
 		
@@ -793,7 +793,7 @@ function imagine_ajaxsubmit() {
 			echo '<link rel="stylesheet" type="text/css" href="'.plugins_url().'/imagine/templates/css/'.esc_attr($layovertemplate).'-layover.css">';
 			echo '<div id="imagine-layover">';
 				echo '<img class="layover-image" src="'.esc_attr($imgurl).'">';
-				echo '<span class="close-imagine-layover">Close</span>';
+				echo '<span class="close-imagine-layover">' . __('Close', 'imagine-images') . '</span>';
 			echo '</div>';
 		}
 

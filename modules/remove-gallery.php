@@ -27,7 +27,7 @@ $galmeta = $wpdb -> get_row("SELECT * FROM ".$wpdb->prefix."imagine_gallery WHER
 $galslug = $galmeta -> gallerySlug;
 $gname = $galmeta -> galleryName;
 $rmdir = $plugindir . '/imagine/' . $galslug . '/';
-echo '<p class="succes">Gallery "'.esc_html($gname).'" has been removed succesfully.</p>';
+echo '<p class="succes">' . __('Gallery', 'imagine-images') . ' "'.esc_html($gname).'" ' . __('has been removes succesfully.', 'imagine-images') . '</p>';
 rrmdir($rmdir);
 
 $wpdb -> delete( $wpdb->prefix."imagine_gallery", array("galleryId" => $gid));

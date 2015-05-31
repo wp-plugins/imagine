@@ -3,7 +3,7 @@
  * Plugin Name: Imagine
  * Author: Martijn Michel, TocadoVision
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.4
+ * Version: 0.99.5
  */
  
  
@@ -116,14 +116,8 @@ function register_imagine() {
 	
 	// SETUP DEFAULTS OPTIONS
 	
-	if ( get_option('optionImagineDefaultPath') == NULL ) {
-		update_option('optionImagineDefaultPath', 'imagine/uploads'); // default upload dir after wp-content
-	}
 	if ( get_option('optionImagineThumbnailWidth') == NULL ) { // default thumb width
 		update_option('optionImagineThumbnailWidth', '150'); 
-	} 
-	if ( get_option('optionImagineIncludejQuery') == NULL ) { // default jquery insert
-		update_option('optionImagineIncludejQuery', 'yes'); 
 	}
 	if ( get_option('optionImagineDefaultGalleryTemplate') == NULL) { // default template
 		update_option('optionImagineDefaultGalleryTemplate', 'Imagine Gallery Extended'); 
@@ -236,19 +230,19 @@ function on_delete_blog( $tables ) {
 }
 add_filter( 'wpmu_drop_tables', 'on_delete_blog' );
 
-add_action('plugins_loaded', 'imagine_load_textdomain');
+
 function imagine_load_textdomain() {
-	load_plugin_textdomain( 'imagine-languages', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+	load_plugin_textdomain( 'imagine-languages', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 }
 
-
+add_action('plugins_loaded', 'imagine_load_textdomain');
 function admin_imagine() {
 	add_menu_page('Imagine', 'Imagine', 'manage_options', 'imagine', 'loadadmin', plugin_dir_url(__FILE__).'img/imagine-logo-32px.png');
-	add_submenu_page('imagine', 'Gallery', 'Gallery', 'manage_options', 'gallery', 'loadgallery');
-	add_submenu_page('imagine', 'Album', 'Album', 'manage_options', 'album', 'loadalbum');
-	add_submenu_page('imagine', 'Templates', 'Templates', 'manage_options', 'templates', 'loadtemplates');
-	add_submenu_page('imagine', 'Settings', 'Settings', 'manage_options', 'settings', 'loadsettings');
-	add_submenu_page('imagine', 'Howto', 'Howto', 'manage_options', 'howto', 'loadhowto');
+	add_submenu_page('imagine', 'Gallery', __('Gallery','imagine-languages'), 'manage_options', 'gallery', 'loadgallery');
+	add_submenu_page('imagine', 'Album', __('Album','imagine-languages'), 'manage_options', 'album', 'loadalbum');
+	add_submenu_page('imagine', 'Templates', __('Template','imagine-languages'), 'manage_options', 'templates', 'loadtemplates');
+	add_submenu_page('imagine', 'Settings', __('Settings','imagine-languages'), 'manage_options', 'settings', 'loadsettings');
+	add_submenu_page('imagine', 'Howto', __('Howto','imagine-languages'), 'manage_options', 'howto', 'loadhowto');
 }
 
 add_action('admin_menu', 'admin_imagine');
