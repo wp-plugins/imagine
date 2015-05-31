@@ -150,8 +150,8 @@ thead th span {
 	top:0;
 }
 
-.wp-list-table {
-	relative;
+.imagine-overview-wrap .wp-list-table, .imagine-formtable-wrap .wp-list-table {
+	position: relative;
 	left:0;
 	top:0;
 	height:auto;
