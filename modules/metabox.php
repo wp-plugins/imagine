@@ -10,16 +10,16 @@
 	$overlaytemp = $wpdb -> get_results('SELECT * FROM '.$wpdb->prefix.'imagine_templates WHERE tempType="overlay"');
 ?>
     <div class="metaoptions">
-        <p><?php __('Select a type to add', 'imagine-languages'); ?>:</p> 
-        <h3 class="bt button" rel="gallery"><?php __('Gallery', 'imagine-images'); ?></h3>
-        <h3 class="bt button" rel="album"><?php __('Album', 'imagine-images'); ?></h3>
-        <h3 class="bt button" rel="image"><?php __('Image', 'imagine-images'); ?></h3>
+        <p><?php echo __('Select a type to add', 'imagine-languages'); ?>:</p> 
+        <h3 class="bt button" rel="gallery"><?php echo __('Gallery', 'imagine-languages'); ?></h3>
+        <h3 class="bt button" rel="album"><?php echo __('Album', 'imagine-languages'); ?></h3>
+        <h3 class="bt button" rel="image"><?php echo __('Image', 'imagine-languages'); ?></h3>
     </div>  
 
 <?php    
     // Galleries
 	echo '<div rel="gallery" class="form">';
-    echo '<div class="row">' . __('Gallery', 'imagine-images') . ':</div>';
+    echo '<div class="row">' . __('Gallery', 'imagine-languages') . ':</div>';
 	echo '<select name="metabox-option-gallery">';
     
 	foreach ($galleries as $gallery) {
@@ -31,7 +31,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">' . __('Template', 'imagine-images') . ': </div>';
+    echo '<div class="row">' . __('Template', 'imagine-languages') . ': </div>';
 	echo '<select name="metabox-option-template">';
 	foreach($galtemp as $template) {
 		$tname = $template -> tempName;
@@ -40,7 +40,7 @@
 	echo '</select>';
     
     echo '</br>';
-    echo '<div class="row">' . __('Layover template', 'imagine-images') . ': </div>';
+    echo '<div class="row">' . __('Layover template', 'imagine-languages') . ': </div>';
 	echo '<select name="metabox-option-layovertemplate">';
 	echo '<option value="imagine">Imagine</option>';
 	
