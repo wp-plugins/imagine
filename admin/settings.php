@@ -86,5 +86,5 @@
 			</td>
 		</tr>
 	</table>
-	<div id="option-submit" class="button buttom-primary" type="submit" name="option-submit" value="Opslaan"><?php __('Save', 'imagine-languages'); ?></div>
+	<div id="option-submit" class="button buttom-primary" type="submit" name="option-submit" value="Opslaan"><?php echo __('Save', 'imagine-languages'); ?></div>
 </form>
