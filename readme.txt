@@ -44,7 +44,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <ul>
 <li>WYSIWYG template creation.</li>
 </ul>
-
+</p>
 == Installation ==
 
 1. Upload `imagine` folder to the `/wp-content/plugins/` directory
