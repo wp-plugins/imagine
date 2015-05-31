@@ -33,6 +33,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <strong>Roadmap to v1.0</strong>
 <ul>
 <li>More settings.</li>
+<li>Gallery/Album preview image.</li>
 <li>Building more default templates.</li>
 <li>Better image resizing.</li>
 <li>Other improvements.</li>
@@ -43,6 +44,8 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <strong>After v1.0</strong>
 <ul>
 <li>WYSIWYG template creation.</li>
+<li>Use image/gallery as crossFading background.</li>
+<li>Image tags.</li>
 </ul>
 </p>
 == Installation ==
