@@ -19,7 +19,7 @@
 		$gdesc = $gal -> galleryDesc;
 		$gid = $gal->galleryId;
 		echo '<div class="imagine-gallery-wrap" gid="'.esc_attr($gid).'">';
-		echo '<h2 class="gallery_title">'.esc_html($gname).'</h2>';
+		echo '<h3 class="gallery_title">'.esc_html($gname).'</h3>';
 				
 			echo '<div class="spacer" style="clear: both;"></div>';
 			echo '</div>';

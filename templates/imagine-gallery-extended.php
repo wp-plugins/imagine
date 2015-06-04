@@ -18,9 +18,10 @@
         }
     } else if ( !isset( $_GET['imagine'][0]['inside'] ) || $_GET['imagine'][0]['inside'] == NULL) {
         echo '<h2>'.esc_html($gname).'</h2>';
+        echo '<p>'.esc_html($gdesc).'</p>';
     }
     
-    echo '<p>'.esc_html($gdesc).'</p>';
+    
 	foreach ($imgs as $img) {
 		$filename = $img -> imgFilename;
 		$title = $filename;
