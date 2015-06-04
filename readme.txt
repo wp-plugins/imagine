@@ -21,6 +21,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <li>Image upload</li>
 <li>Single image</li>
 <li>Albums</li>
+<li>Preview images</li>
 <li>Code generator</li>
 <li>Custom templates (for now only hardcoded into php/css)</li>
 <li>Some settings</li>
@@ -34,7 +35,6 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <strong>Roadmap to v1.0</strong>
 <ul>
 <li>More settings.</li>
-<li>Gallery/Album preview image.</li>
 <li>Building more default templates.</li>
 <li>Better image resizing.</li>
 <li>Other improvements.</li>
