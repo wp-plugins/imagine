@@ -40,6 +40,7 @@
 	echo '<thead>';
 	echo '<tr>';
 	echo '<th scope="row" class="col-thumb">' . __('Image','imagine-languages') . '</th>';
+    echo '<th scope="row" class="col-medium">' . __('Actions', 'imagine-languages') . '</th>';
 	echo '<th class="col-narrow">' . __('ID','imagine-languages') . '</th>';
 	echo '<th class="col-wide">' . __('Filename','imagine-languages') . '</th>';
 	echo '<th class="col-wide">' . __('Description','imagine-languages') . ' <span>' . __('Click to change','imagine-languages') . '</span></th>';
@@ -66,6 +67,8 @@
 		
 		echo '<tr class="alternate" gid="'.esc_attr($gid).'" imgid="'.esc_attr($imgid).'" row="image">';
 		echo '<th scope="row" class="col-thumb"><img src="'.esc_attr($pluginurl).'/imagine/'.esc_attr($galslug).'/thumbs/thumb_'.esc_attr($imgname).'"></th>';
+        echo '<th scope="row"><a type="delete-image" iid="'.esc_attr($imgid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></th>';
+		
 		echo '<td class="col-narrow">'.esc_html($imgid).'</td>';
 		echo '<td class="col-wide" col="imgname">'.esc_html($imgname).'</td>';
 		echo '<td class="col-wide" col="imgdesc">'.esc_html($imgdesc).'</td>';

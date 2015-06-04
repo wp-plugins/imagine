@@ -24,7 +24,7 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 	echo '<th class="col-small">' . __('Uploaded by','imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Created on','imagine-languages') . '</th>';
 	echo '<th class="col-small">' . __('# of images','imagine-languages') . '</th>';
-	echo '<th class="col-medium">' . __('Preview image','imagine-languages') . '</th>';
+	echo '<th class="col-wide">' . __('Preview image','imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Actions','imagine-languages') . '</th>';
 	echo '</tr>';
 	echo '</thead>';
@@ -43,9 +43,9 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 		$gtime = $gallery->creationTime;
 		$gauthor = $gallery->galleryAuthor;
 		
-		$contains = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."imagine_img WHERE galleryId = '$gid'");
+		$imgs = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."imagine_img WHERE galleryId = '$gid'");
 		
-		$imgs = count($contains);
+		$contains = count($imgs);
 		
 		echo '<tr class="alternate" row="gallery" gid="'.esc_attr($gid).'">';
 		echo '<th scope="row"><a type="edit-gallery" gid="'.$gid.'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/edit.png"></a> <a type="delete-gallery" gid="'.esc_attr($gid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></th>';
@@ -55,8 +55,20 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 		echo '<td col="gpath">'.esc_html($galpath).'</td>';
 		echo '<td col="gauthor">'.esc_html($gauthor).'</th>';
 		echo '<td col="gdate">'.esc_html($gdate).' at '.esc_html($gtime).'</th>';	
-		echo '<th>'.esc_html($imgs).'</th>';
-		echo '<td col="gpreview"></td>';
+		echo '<th>'.esc_html($contains).'</th>';
+		echo '<td col="gpreview">';
+        echo '<select name="galleryPreview">';
+        foreach($imgs as $img) {
+            
+            $filename = $img->imgFilename;
+            if ( !empty($gallery->galleryPreviewImg) && $gallery->galleryPreviewImg == $filename ) {
+            echo '<option value="'.esc_attr($filename).'" galleryname="'.esc_attr($galname).'" gid="'.esc_attr($gid).'" selected="selected">'.esc_html($filename).'</option>'; 
+            } else {
+            echo '<option value="'.esc_attr($filename).'" galleryname="'.esc_attr($galname).'" gid="'.esc_attr($gid).'">'.esc_html($filename).'</option>'; 
+            }
+        }
+        echo '</select>';
+        echo '</td>';
 		echo '<td><a type="edit-gallery" gid="'.esc_attr($gid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/edit.png"></a> <a type="delete-gallery" gid="'.esc_attr($gid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></td>';
 		
 		
