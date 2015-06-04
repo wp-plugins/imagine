@@ -39,7 +39,7 @@
 					imagine.each( function() {
 							$(this).hide();
 							
-							
+							var eid = $(this).attr('identity');
 							
 							
 							if ( temp == undefined ) {
@@ -89,7 +89,7 @@
 								
 								
 									
-									$('.imagine[aid="'+aid+'"][type="album"]').fadeIn(1000).html(response);
+									$('.imagine[aid="'+aid+'"][type="album"][identity="'+eid+'"]').fadeIn(1000).html(response);
 									
 									
 							});
@@ -115,7 +115,7 @@
 					imagine.each( function() {
 							$(this).hide();
 							
-							
+							var eid = $(this).attr('identity');
 							
 							
 							if ( temp == undefined ) {
@@ -165,7 +165,7 @@
 								
 								
 									
-									$('.imagine[iid="'+iid+'"][type="image"]').fadeIn(1000).html(response);
+									$('.imagine[iid="'+iid+'"][type="image"][identity="'+eid+'"]').fadeIn(1000).html(response);
 									
 									
 							});
@@ -178,20 +178,29 @@
 			}
 		};
 		
-		
 		/* imagineGallery function */
-		$.imagineGallery = function (inside, id, temp, ltemp, tselect) {
+		$.imagineGallery = function (inside, aeid, id, temp, ltemp, tselect) {
             /* select imagine galleries to load, can be multiple */
 			var imagine = $('.imagine[type="gallery"]');
             /* if overwritten only one instance of .imagine is loaded. */
             if ( id !== undefined ) {
+                // console.log('ran');
                 var imagine = $('.imagine[type="gallery"][gid="'+id+'"]');
+            };
+            if ( id !== undefined && aeid !== undefined) {
+                // console.log('ran');
+                var imagine = $('[type="album"][identity="'+aeid+'"] .imagine[type="gallery"][gid="'+id+'"]');
             };
 			if(imagine.length > 0) {
 
                 imagine.each( function() {
                     /* hide .imagine */
                     $(this).hide();
+                    /* get elem identity */
+                    // console.log(imagine.length);
+                    var eid = $(this).attr('identity');
+                    
+                    // console.log('aid: ' + aid + '- aeid: ' + aeid + '- eid: ' + eid);
                     /* use the inline set attribute template if not overwritten at function call, if not set will use default template -> imagine.ajax.php */
                     if ( temp == undefined ) {
                         var temp = $(this).attr('template');
@@ -222,8 +231,8 @@
                     if ( inside == 'true' ) {
                         var ins = 'true';
                         var aid = imagine.closest('[type="album"]').attr('aid');
+                        var aeid = imagine.closest('[type="album"]').attr('identity');
                     }
-                    
                     
                     /* push some data for imagine-ajaxsubmit */
                     var data = Array();
@@ -247,36 +256,45 @@
                     }, function(response, data, xhr) {
                         /* append the response to the correct gallery */
                         if ( aid != undefined ) {
-                            $('[aid="'+aid+'"] .imagine[gid="'+gid+'"][type="gallery"]').fadeIn(1000).html(response);
+                            $('[aid="'+aid+'"][identity="'+aeid+'"] .imagine[gid="'+gid+'"][type="gallery"][identity="'+eid+'"]').fadeIn(1000).html(response);
+                            
                         } else {
-                            $('.imagine[gid="'+gid+'"][type="gallery"]').fadeIn(1000).html(response);
+                            $('.imagine[gid="'+gid+'"][type="gallery"][identity="'+eid+'"]').fadeIn(1000).html(response);
+                            
                         }
                     });
 				});	
 			}
 		};
-		
+        
         /* Album overview gallery wrap click event */
 		$(document).on('click', '.imagine-gallery-wrap', function() {
+            
             /* hide all galleries */
             var aid = $(this).closest('[type="album"]').attr('aid');
             $('[type="album"] .imagine[type="gallery"]').hide();
+            var aeid = $(this).closest('[type="album"]').attr('identity');
+            
+            
             /* get id clicked gal */
             var gid = $(this).attr('gid');
             /* check to see if contains .imagine already. */
 			var content = $(this).find('.imagine');
             /* if not found append new .imagine[type=gallery] div and load the gallery into it */
 			if ( content.length == false ) {
+                console.log('did not find content');
                 $(this).append('<div gid="'+gid+'" type="gallery" class="imagine"></div>');
+                $.identifyImagine();
                 /* let $.imagineGallery run on one instance only. OVERRIDING the GID */
-                $.imagineGallery('true', gid);
+                $.imagineGallery('true', aeid, gid);
             /* if found just show the gallery */
 			} else if ( content.length == true ) {
-                $('[aid="'+aid+'"] .imagine[type="gallery"][gid="'+gid+'"]').fadeIn(1000);
+                console.log('found content');
+                $('[aid="'+aid+'"][identity="'+aeid+'"] .imagine[type="gallery"][gid="'+gid+'"]').fadeIn(1000);
             }
 		});
 		
-	/*	
+	/*
 		$.setAspectRatio = function(width, height) {
 			
 			var target = $('.imagine-thumbnail-wrap img');
@@ -338,7 +356,22 @@
 		
 			
 		};
-		*/
+	*/	
+        
+        $.identifyImagine = function(id) { 
+                var elements = $('.imagine');
+                var identity = $('.imagine[identity]').length;
+                elements.each( function() {
+                    if ( $(this).attr('identity') == undefined ) {
+                        $(this).attr('identity', identity);
+                        identity++;
+                    }
+                });
+            
+            
+        }
+        
+        $.identifyImagine();
 		$.imagineAlbum();
 		$.imagineGallery();
         $.imagineImage();

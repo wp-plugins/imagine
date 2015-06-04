@@ -140,6 +140,20 @@
 				loadjs();
 			});
 		});
+        
+        $(document).on('click','[type="delete-image"]', function() {
+			var iid = $(this).attr('iid');
+			$.post(imagineajax.ajaxurl, {
+				imgdel : iid,
+				action : 'imagine-ajaxsubmit'
+			}, function(response) {
+				console.log(response);
+				
+				$('.imagine-wrap').html(response);
+				$('[row="gallery"]').removeClass('highlight');
+				loadjs();
+			});
+		});
 		
 		$(document).on('click', 'thead', function() {
 			var tbody = $(this).parent().find('tbody');
@@ -307,6 +321,7 @@
 			$('[row="gallery"]').each( function() {
 				var gid = $(this).attr('gid');
 				var galdesc = $(this).find('[name="galleryDesc"]').val();
+                var galpreview = $(this).find('[name="galleryPreview"]').val();
 				if (galdesc == undefined) {
 					galdesc = $(this).find('[col="gdesc"]').text();
 				}
@@ -322,7 +337,8 @@
 				var gal = {
 					galId: gid,
 					galDesc: galdesc,
-					galName: gname
+					galName: gname,
+                    galPreview: galpreview
 				};
 				gallery.push(gal);
 			});
@@ -340,6 +356,47 @@
 				if (curgal != undefined) {
 					$('[row="gallery"]').removeClass('highlight');
 					$('[row="gallery"][gid="'+curgal+'"]').addClass('highlight');
+				}
+				
+				loadjs();
+			});
+		});
+        
+        $(document).on('click','#update-album', function() {
+			var album = Array();
+			var curalbum = $('.highlight').attr('aid');
+			var tablepos = $('.imagine-album-overview-wrap .wp-list-table').offset().left;
+			$('[row="album"]').each( function() {
+				var aid = $(this).attr('aid');
+				var albumdesc = $(this).find('[name="albumDesc"]').val();
+				if (albumdesc == undefined) {
+					albumdesc = $(this).find('[col="adesc"]').text();
+				}
+				var aname = $(this).find('[name="albumName"]').val();
+				if (aname == undefined) {
+					aname = $(this).find('[col="aname"]').text();
+				}
+				var alb = {
+					albumId: aid,
+					albumDesc: albumdesc,
+					albumName: aname
+				};
+				album.push(alb);
+			});
+			console.log(album);
+			$.post(imagineajax.ajaxurl, {
+				updatealbum : album,
+				action : 'imagine-ajaxsubmit'
+			}, function(response) {
+				console.log(response);
+				tablepos -= 180;
+				tablepos = -Math.abs(tablepos);
+				$('.imagine-album-overview-wrap').html(response);
+                
+				$('.imagine-album-overview-wrap .wp-list-table').animate({'left': tablepos});
+				if (curalbum != undefined) {
+					$('[row="album"]').removeClass('highlight');
+					$('[row="album"][aid="'+curalbum+'"]').addClass('highlight');
 				}
 				
 				loadjs();
@@ -488,6 +545,8 @@
 					$(this).html('<input gid="'+gid+'" type="text" name="galleryName" class="regular-text" value="'+text+'">');
 				}
 			});
+            
+            
 			
 			$('[col="tdesc"]').on('click', function() {
 				var text = $(this).text();
@@ -501,6 +560,21 @@
 				var tid = $(this).closest('[row="template"]').attr('tid');
 				if ($(this).find('input').length == false) {
 					$(this).html('<input tid="'+tid+'" type="text" name="tempName" class="regular-text" value="'+text+'">');
+				}
+			});
+            
+            $('[col="adesc"]').on('click', function() {
+				var text = $(this).text();
+				var aid = $(this).closest('[row="album"]').attr('aid');
+				if ($(this).find('input').length == false) {
+					$(this).html('<input aid="'+aid+'" type="text" name="albumDesc" class="regular-text" value="'+text+'">');
+				}
+			});
+			$('[col="aname"]').on('click', function() {
+				var text = $(this).text();
+				var aid = $(this).closest('[row="album"]').attr('aid');
+				if ($(this).find('input').length == false) {
+					$(this).html('<input aid="'+aid+'" type="text" name="albumName" class="regular-text" value="'+text+'">');
 				}
 			});
 			
