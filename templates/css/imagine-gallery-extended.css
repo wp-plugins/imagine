@@ -15,7 +15,14 @@
 	background-color: rgba(255,255,255,0.6);
 	word-break:break-all;
 }
-
+.imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] .thumbnail-wrap {
+ float: left;
+    clear: none;
+    width: 160px;
+    height: 90px;
+    position:relative;
+    overflow: hidden;
+}
 .imagine .imagine-thumbnail-wrap[template="imagine-gallery-extended"] img {
    position:relative;
   height:auto;

@@ -1,0 +1,47 @@
+.imagine {
+	position:relative;
+	left:0;
+	top:0;
+}
+
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] {
+	width:100% - 10px;
+	left:0;
+	top:0;
+	position:relative;
+	height:auto;
+	margin: 0 0 10px 0;
+	padding: 0 6px 6px 0;
+	background-color: rgba(255,255,255,0.6);
+	word-break:break-all;
+}
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] .imagine-gallery-preview-wrap{
+    width: 160px;
+    height: 90px;
+    overflow:hidden;
+    position: relative;
+    float:left;
+    clear:none;
+}
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] img {
+   position:relative;
+  height:auto;
+}
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] .imagine-gallery-metadata {
+   float: left;
+    clear: none;
+    left: 2%;
+    position:relative;
+}
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] h3.gallery_title {
+   float: left;
+    clear: both;
+    position:relative;
+    margin-top: 0;
+}
+.imagine .imagine-gallery-wrap[template="imagine-album-extended"] p.gallery_desc {
+   float: left;
+    clear: both;
+    position:relative;
+    margin-top : 0;
+}
