@@ -79,6 +79,10 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.6 =
+* Added gallery preview image option.
+* Updated $.imagine to allow the same gallery/album on one page with multiple templates.
+
 = 0.99.5 =
 * Added Wordpress Language support.
 * Created Dutch language mo/po files.

@@ -157,7 +157,12 @@ thead th span {
 	height:auto;
 	width:150% !important;
 }
-
+.imagine-wrap .wp-list-table input {
+    width: 100%;
+}
+.imagine-wrap .wp-list-table select {
+    width: 100%;
+}
 .template-example {
 		width:100%;
 		background: #e8e8e8;

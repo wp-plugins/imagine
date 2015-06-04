@@ -155,6 +155,13 @@ function imagine_ajaxsubmit() {
 			} else {
 				$galdesc = null;
 			}
+            
+            if(isset($gal['galPreview'])) {	
+					$galpreview = sanitize_file_name($gal['galPreview']);
+				
+			} else {
+				$galpreview = null;
+			}
 			
 			if(isset($gal['galDesc'])) {	
 				if ( !preg_match("/^[a-zA-Z0-9!?,. ]*$/", $gal['galDesc'] ) ) {
@@ -170,8 +177,10 @@ function imagine_ajaxsubmit() {
 			if ($exist != NULL) {
 				$wpdb -> update($wpdb->prefix.'imagine_gallery', array(
 					"galleryName" => $galname, 
-					"galleryDesc"=>$galdesc), 
-					array("galleryId"=>$galid));
+					"galleryDesc"=>$galdesc,
+                    "galleryPreviewImg" => $galpreview
+                ), 
+                array("galleryId"=>$galid));
 			}
 		}
 		$tempfile = plugin_dir_path( __FILE__ ) . "admin/gallery-overview.php";
@@ -297,6 +306,45 @@ function imagine_ajaxsubmit() {
 		echo '<div class="imagine-formtable-wrap"></div>';
 
 	}
+    
+    if (isset($_POST['updatealbum'])) {
+		$albums = $_POST['updatealbum'];
+		foreach($albums as $album) {
+			$albumid = intval( $album['albumId'] );
+			
+			if(isset($album['albumName'])) {	
+				if ( !preg_match("/^[a-zA-Z0-9 ]*$/", $album['albumName'] ) ) {
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
+					break 1;
+				} else {
+					$albumname = sanitize_text_field($album['albumName']);
+				}
+			} else {
+				$albumname = null;
+			}
+			
+			if(isset($album['albumDesc'])) {	
+				if ( !preg_match("/^[a-zA-Z0-9!?,. ]*$/", $album['albumDesc'] ) ) {
+  					echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
+					break 1;
+				} else {
+					$albumdesc = sanitize_text_field($album['albumDesc']);
+				}
+			} else {
+				$albumdesc = null;
+			}
+			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$albumid'");
+			if ($exist != NULL) {
+				$wpdb -> update($wpdb->prefix.'imagine_albums', array(
+					"albumName" => $albumname, 
+					"albumDesc"=>$albumdesc), 
+					array("albumId"=>$albumid));
+			}
+		}
+		$tempfile = plugin_dir_path( __FILE__ ) . "admin/album-overview.php";
+		include $tempfile;
+	}
+    
     
     // Save album content
     if ( isset($_POST['savealbum']) ) {
@@ -537,6 +585,21 @@ function imagine_ajaxsubmit() {
 		echo '<p class="succes">' . __('Saved succesfully.', 'imagine-images') . '</p>';
 		
 	}
+    
+    if (isset($_POST['imgdel'])) {
+		$iid = $_POST['imgdel'];
+		if ( !ctype_digit($iid) ) {
+			echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
+		} else {
+			// INCLUDE MODULE remove-gallery.php
+			$dir = plugin_dir_path( __FILE__ );
+			include $dir.'modules/remove-image.php';
+		}
+		
+		$tempfile = plugin_dir_path( __FILE__ ) . "admin/gallery-overview.php";
+		include $tempfile;
+		echo '<div class="imagine-formtable-wrap"></div>';
+	}
 	
 	// ----------------------------------------------------------------------------------------------------------------------------------Metabox----------------- --------  //
 	
@@ -659,7 +722,7 @@ function imagine_ajaxsubmit() {
 
 		// runs if gallery
 		if (isset($_GET['imagine'][0]['gallery'])) {
-		  
+		    
 			$gallery = intval($_GET['imagine'][0]['gallery']);
 			/* template selection tool for frontend 
 			 * 

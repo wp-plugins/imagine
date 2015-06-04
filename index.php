@@ -3,7 +3,7 @@
  * Plugin Name: Imagine
  * Author: Martijn Michel, TocadoVision
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.5
+ * Version: 0.99.6
  */
  
  
@@ -15,6 +15,8 @@
 /*
  * 1. Custom templates TABLE.jQuery.css.php
  * 2. Custom layover templates TABLE.jQuery.css.php
+ * 3. A custom template to be instructed by js. in the template everything is included and can be shown/hidden with javascript. it runs on a custom function.
+    ie $.imagineGalleryTemplate(title, desc, width, height, etc, etc); templatename 'Imagine Gallery/Album jQuery'
  */ 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------  //
@@ -131,7 +133,8 @@ function register_imagine() {
 	
 	$ext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Extended'");
 	$min = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Minified'");
-	$alb = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
+	$albmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
+    $albext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Extended'");
     $imgmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Image Minified'");
 	$today = date("Y-m-d"); 
 	$time = date('H:i:s');
@@ -169,7 +172,7 @@ function register_imagine() {
 					)
 				);		
 				}	
-	if ($alb == NULL) {
+	if ($albmin == NULL) {
 	$wpdb -> insert($table_templates, array(
 						"tempName" => "Imagine Album Minified", 
 						"tempType" => "album",
@@ -180,10 +183,25 @@ function register_imagine() {
 						"tempPath" => $dir,
 						"tempCss" => 'imagine-album-minified.css',
 						"tempPhp" => 'imagine-album-minified.php',
-						"tempDesc"=> "Showcase Album minified", 
+						"tempDesc"=> "Showcase Album Minified", 
 					)
 				);		
-				}	
+				}
+    if ($albext == NULL) {
+	$wpdb -> insert($table_templates, array(
+						"tempName" => "Imagine Album Extended", 
+						"tempType" => "album",
+						"tempSlug" => "imagine-album-extended",
+						"tempDate" => $today,
+						"tempTime" => $time,
+						"tempAuthor" => "imagine",
+						"tempPath" => $dir,
+						"tempCss" => 'imagine-album-extended.css',
+						"tempPhp" => 'imagine-album-extended.php',
+						"tempDesc"=> "Showcase Album Extended", 
+					)
+				);		
+				}
     if ($imgmin == NULL) {
 	$wpdb -> insert($table_templates, array(
 						"tempName" => "Imagine Image Minified", 
@@ -307,6 +325,8 @@ function initimagine() {
 	
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('imagine-front-js', plugin_dir_url(__FILE__) . 'js/imagine.js', array('jquery'), '1.0', false);
+    // wp_enqueue_script('fancyBox', plugin_dir_url(__FILE__) . 'js/jquery.fancybox.js', array('jquery'));
+    // wp_enqueue_style('fancyBoxCSS', plugin_dir_url(__FILE__) . 'js/jquery.fancybox.js');
 	wp_localize_script('imagine-front-js', 'imagineajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 	
 
