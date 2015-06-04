@@ -1,5 +1,6 @@
 === Imagine ===
 Tags: gallery, ajax, images, pictures, albums, jquery
+Contributors: mmichel, Tocado Vision
 Requires at least: 3.0.1
 Tested up to: 4.2.2
 Stable tag: 4.2.2
