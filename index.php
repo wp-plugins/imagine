@@ -125,6 +125,9 @@ function register_imagine() {
 	if ( get_option('optionImagineThumbnailWidth') == NULL ) { // default thumb width
 		update_option('optionImagineThumbnailWidth', '150'); 
 	}
+    if ( get_option('optionImagineThumbnailWidth') == NULL ) { // default thumb width
+		update_option('optionImagineThumbnailRatio', '16:9'); 
+	}
 	if ( get_option('optionImagineDefaultGalleryTemplate') == NULL) { // default template
 		update_option('optionImagineDefaultGalleryTemplate', 'Imagine Gallery Extended'); 
 	}

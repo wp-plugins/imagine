@@ -26,6 +26,15 @@ function imagine_ajaxsubmit() {
 					update_option($input, $value);
 					
 				}
+                
+            } else if ( $input == 'optionImagineThumbnailRatio' ) {
+				if (!ctype_digit( str_replace(':', '', $value ))) {
+	  				echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
+					break 1;
+				} else { 
+					update_option($input, $value);
+					
+				}
 			} else {
 				if (!ctype_alnum( str_replace(' ', '', $value ))) {
 	  				echo "<p class='fail'>" . __('Only letters and white spaces allowed.', 'imagine-images') . "</p>";
@@ -333,11 +342,19 @@ function imagine_ajaxsubmit() {
 			} else {
 				$albumdesc = null;
 			}
+            
+            if(isset($album['albumPreview'])) {	
+					$albumpreview = sanitize_file_name($album['albumPreview']);
+				
+			} else {
+				$galpreview = null;
+			}
 			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$albumid'");
 			if ($exist != NULL) {
 				$wpdb -> update($wpdb->prefix.'imagine_albums', array(
 					"albumName" => $albumname, 
-					"albumDesc"=>$albumdesc), 
+					"albumDesc"=>$albumdesc,
+                    "albumPreviewImg"=>$albumpreview), 
 					array("albumId"=>$albumid));
 			}
 		}
