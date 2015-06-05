@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagine\n"
-"POT-Creation-Date: 2015-05-31 13:59+0100\n"
-"PO-Revision-Date: 2015-05-31 13:59+0100\n"
+"POT-Creation-Date: 2015-06-05 10:56+0100\n"
+"PO-Revision-Date: 2015-06-05 10:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -32,12 +32,12 @@ msgstr "Nieuwe naam van het album ..."
 msgid "Drag this or any table to the left to view more options!"
 msgstr "Sleep dit (of elk ander) overzicht naar rechts om meer opties te zien!"
 
-#: admin/album-overview.php:19 imagine-ajax.php:286 index.php:242
+#: admin/album-overview.php:19 imagine-ajax.php:295 index.php:264
 #: modules/metabox.php:15 modules/metabox.php:59 modules/remove-album.php:9
 msgid "Album"
 msgstr "Album"
 
-#: admin/album-overview.php:20 admin/edit-gallery.php:43
+#: admin/album-overview.php:20 admin/edit-gallery.php:44
 #: admin/gallery-overview.php:20 admin/template-overview.php:25
 msgid "ID"
 msgstr "ID"
@@ -48,12 +48,12 @@ msgid "Name"
 msgstr "Naam"
 
 #: admin/album-overview.php:21 admin/album-overview.php:22
-#: admin/edit-gallery.php:45 admin/edit-gallery.php:46
+#: admin/edit-gallery.php:46 admin/edit-gallery.php:47
 #: admin/gallery-overview.php:21 admin/gallery-overview.php:22
 msgid "Click to change"
 msgstr "Klik om te veranderen"
 
-#: admin/album-overview.php:22 admin/edit-gallery.php:45
+#: admin/album-overview.php:22 admin/edit-gallery.php:46
 #: admin/edit-template.php:18 admin/gallery-overview.php:22
 #: admin/template-overview.php:29
 msgid "Description"
@@ -63,12 +63,12 @@ msgstr "Omschrijving"
 msgid "# of galleries"
 msgstr "Aantal galerijen"
 
-#: admin/album-overview.php:24 admin/edit-gallery.php:47
+#: admin/album-overview.php:24 admin/edit-gallery.php:48
 #: admin/gallery-overview.php:24
 msgid "Uploaded by"
 msgstr "Geüpload door"
 
-#: admin/album-overview.php:25 admin/edit-gallery.php:48
+#: admin/album-overview.php:25 admin/edit-gallery.php:49
 #: admin/gallery-overview.php:25 admin/template-overview.php:31
 msgid "Created on"
 msgstr "﻿Aangemaakt op"
@@ -77,14 +77,15 @@ msgstr "﻿Aangemaakt op"
 msgid "Preview image"
 msgstr "Preview Afbeelding"
 
-#: admin/album-overview.php:27 admin/edit-gallery.php:50
-#: admin/gallery-overview.php:28 admin/template-overview.php:32
+#: admin/album-overview.php:27 admin/edit-gallery.php:43
+#: admin/edit-gallery.php:51 admin/gallery-overview.php:28
+#: admin/template-overview.php:32
 msgid "Actions"
 msgstr "Acties"
 
-#: admin/album-overview.php:67 admin/edit-album.php:50
-#: admin/edit-gallery.php:83 admin/edit-template.php:51
-#: admin/gallery-overview.php:68 admin/settings.php:89
+#: admin/album-overview.php:85 admin/edit-album.php:50
+#: admin/edit-gallery.php:86 admin/edit-template.php:51
+#: admin/gallery-overview.php:80 admin/settings.php:89
 msgid "Save"
 msgstr "Opslaan"
 
@@ -109,18 +110,19 @@ msgid "Upload"
 msgstr "Upload"
 
 #: admin/edit-gallery.php:42 modules/metabox.php:16 modules/metabox.php:86
+#: modules/remove-image.php:23
 msgid "Image"
 msgstr "Afbeelding"
 
-#: admin/edit-gallery.php:44
+#: admin/edit-gallery.php:45
 msgid "Filename"
 msgstr "Bestandsnaam"
 
-#: admin/edit-gallery.php:46
+#: admin/edit-gallery.php:47
 msgid "Alt title"
 msgstr "Alt titel"
 
-#: admin/edit-gallery.php:49
+#: admin/edit-gallery.php:50
 msgid "Image tags"
 msgstr "Afbeelding tags"
 
@@ -153,7 +155,7 @@ msgid "Count"
 msgstr "Aantal"
 
 #: admin/gallery-overview.php:6 admin/gallery-overview.php:19
-#: imagine-ajax.php:129 index.php:241 modules/metabox.php:14
+#: imagine-ajax.php:129 index.php:263 modules/metabox.php:14
 #: modules/metabox.php:22 modules/remove-gallery.php:30
 msgid "Gallery"
 msgstr "Galerij"
@@ -226,7 +228,7 @@ msgstr "Je hebt ook"
 msgid "custom templates. Cool!"
 msgstr "aangepaste sjablonen. Cool!"
 
-#: admin/settings.php:4 index.php:244
+#: admin/settings.php:4 index.php:266
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -237,6 +239,10 @@ msgstr "Miniatuur breedte"
 #: admin/settings.php:15
 msgid "Default gallery template"
 msgstr "Standaard galerij sjabloon"
+
+#: admin/settings.php:31 admin/settings.php:52 admin/settings.php:73
+msgid "Current default: "
+msgstr ""
 
 #: admin/settings.php:36
 msgid "Default album template"
@@ -259,7 +265,7 @@ msgstr ""
 "Een toekomstige versie zal ondersteuning hebben voor het maken van "
 "sjablonen. Voor nu zijn die alleen aan te maken door ze zelf te coden."
 
-#: admin/template-overview.php:24 index.php:243 modules/metabox.php:34
+#: admin/template-overview.php:24 index.php:265 modules/metabox.php:34
 #: modules/metabox.php:71 modules/metabox.php:98
 msgid "Template"
 msgstr "Sjabloon"
@@ -274,10 +280,11 @@ msgstr "Aangemaakt op"
 
 #: imagine-ajax.php:23 imagine-ajax.php:31 imagine-ajax.php:67
 #: imagine-ajax.php:79 imagine-ajax.php:100 imagine-ajax.php:150
-#: imagine-ajax.php:161 imagine-ajax.php:185 imagine-ajax.php:225
-#: imagine-ajax.php:236 imagine-ajax.php:249 imagine-ajax.php:352
-#: imagine-ajax.php:363 imagine-ajax.php:396 imagine-ajax.php:407
-#: imagine-ajax.php:421 imagine-ajax.php:502 imagine-ajax.php:513
+#: imagine-ajax.php:168 imagine-ajax.php:194 imagine-ajax.php:234
+#: imagine-ajax.php:245 imagine-ajax.php:258 imagine-ajax.php:317
+#: imagine-ajax.php:328 imagine-ajax.php:408 imagine-ajax.php:419
+#: imagine-ajax.php:452 imagine-ajax.php:463 imagine-ajax.php:477
+#: imagine-ajax.php:558 imagine-ajax.php:569 imagine-ajax.php:600
 msgid "Only letters and white spaces allowed."
 msgstr "Alleen letters en spaties zijn toegestaan."
 
@@ -293,49 +300,49 @@ msgstr "aangemaakt."
 msgid "Gallery name already exists. Please choose another name."
 msgstr "Deze naam bestaat al. Kies a.u.b. een andere."
 
-#: imagine-ajax.php:201
+#: imagine-ajax.php:210
 msgid "Unable to load gallery."
 msgstr "Kan galerij niet laden."
 
-#: imagine-ajax.php:286
+#: imagine-ajax.php:295
 msgid "created succesfully"
 msgstr "aangemaakt."
 
-#: imagine-ajax.php:289
+#: imagine-ajax.php:298
 msgid "Album name already exists. Please choose another name."
 msgstr "Deze naam bestaat al. Kies a.u.b. een andere."
 
-#: imagine-ajax.php:315
+#: imagine-ajax.php:371
 msgid "Unable to load album."
 msgstr "Kan album niet laden."
 
-#: imagine-ajax.php:326
+#: imagine-ajax.php:382
 msgid "Unable to remove album."
 msgstr "Kan album niet verwijderen."
 
-#: imagine-ajax.php:447
+#: imagine-ajax.php:503
 msgid "Template name already exists. Please choose another name."
 msgstr "Deze naam bestaat al. Kies a.u.b. een andere."
 
-#: imagine-ajax.php:485 imagine-ajax.php:493
+#: imagine-ajax.php:541 imagine-ajax.php:549
 msgid "Error uploading image."
 msgstr "Fout bij het opslaan van de afbeelding."
 
-#: imagine-ajax.php:537
+#: imagine-ajax.php:593
 msgid "Saved succesfully."
 msgstr "Opgeslagen."
 
-#: imagine-ajax.php:550 imagine-ajax.php:556 imagine-ajax.php:563
-#: imagine-ajax.php:580 imagine-ajax.php:586 imagine-ajax.php:602
-#: imagine-ajax.php:608
+#: imagine-ajax.php:621 imagine-ajax.php:627 imagine-ajax.php:634
+#: imagine-ajax.php:651 imagine-ajax.php:657 imagine-ajax.php:673
+#: imagine-ajax.php:679
 msgid "Error saving."
 msgstr "Fout bij het opslaan."
 
-#: imagine-ajax.php:796
+#: imagine-ajax.php:867
 msgid "Close"
 msgstr "Sluit"
 
-#: index.php:245
+#: index.php:267
 msgid "Howto"
 msgstr "Hulp"
 
@@ -354,6 +361,31 @@ msgstr "Lightbox sjabloon"
 #: modules/remove-album.php:9 modules/remove-gallery.php:30
 msgid "has been removes succesfully."
 msgstr "verwijderd."
+
+#: modules/remove-image.php:23
+msgid "has been removed succesfully."
+msgstr "verwijderd."
+
+#: modules/upload-image.php:31 modules/upload-image.php:33
+#: modules/upload-image.php:35
+msgid "Error"
+msgstr "Fout"
+
+#: modules/upload-image.php:33
+msgid "filetype"
+msgstr "bestandstype"
+
+#: modules/upload-image.php:33
+msgid "not allowed."
+msgstr "verboden."
+
+#: modules/upload-image.php:35
+msgid "filename exceeds limit(20)"
+msgstr "bestandsnaam overschrijdt limiet(20)"
+
+#: modules/upload-image.php:80
+msgid "Uploaded"
+msgstr "Geupload"
 
 #~ msgid "Delete"
 #~ msgstr "Verwijder"
