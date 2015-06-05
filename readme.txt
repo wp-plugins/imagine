@@ -36,7 +36,6 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <ul>
 <li>More settings.</li>
 <li>Building more default templates.</li>
-<li>Better image resizing.</li>
 <li>Other improvements.</li>
 </ul>
 </p>
@@ -80,6 +79,10 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.7 =
+* Improved image resizing. Supports jpg/png/gif.
+* Some minor fixes.
+
 = 0.99.6 =
 * Added gallery preview image option.
 * Updated $.imagine to allow the same gallery/album on one page with multiple templates.

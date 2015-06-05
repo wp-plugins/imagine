@@ -5,7 +5,7 @@
  * Author: Tocado Vision
  * Author URI: http://tocadovision.nl
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.6
+ * Version: 0.99.7
  * Text Domain: imagine-languages
  * Domain Path: /lang/
  */
