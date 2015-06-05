@@ -47,9 +47,10 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 		// load image and get image size
 		if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'JPG') {
 			$thumb = imagecreatefromjpeg($file_tmp);
-		} else if ( $ext == 'png' ) {
+		} else if ( $ext == 'png' || $ext == 'PNG' ) {
 			$thumb = imagecreatefrompng($file_tmp);
-		} else if ( $ext == 'gif' ) {
+            imagealphablending($thumb, true);
+		} else if ( $ext == 'gif' || $ext == 'GIF' ) {
 			$thumb = imagecreatefromgif($file_tmp);
 		}
 			
@@ -68,13 +69,38 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 		$new_height = $height / ($width / $thumbWidth);
 		
 		
-		// create a new temporary image
-		$tmp_img = imagecreatetruecolor($new_width, $new_height);
-
-		// copy and resize old image into new image
-		imagecopyresized($tmp_img, $thumb, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-		// save into file.
-		imagejpeg($tmp_img, $plugindir . '/imagine/' . $galslug . '/thumbs/thumb_' . esc_attr($file_name));
+	
+		if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'JPG') {
+            
+            // create a new temporary image
+            $tmp_img = imagecreatetruecolor($new_width, $new_height);
+            // copy and resize old image into new image
+		    imagecopyresampled($tmp_img, $thumb, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+            // save into file.
+			imagejpeg($tmp_img, $plugindir . '/imagine/' . $galslug . '/thumbs/thumb_' . esc_attr($file_name));
+            
+		} else if ( $ext == 'png' || $ext == 'PNG') {
+            
+            $tmp_img = imagecreatetruecolor($new_width, $new_height);
+            imagealphablending($tmp_img, false);
+            imagesavealpha($tmp_img, true);  
+            
+            // copy and resize old image into new image
+		    imagecopyresampled($tmp_img, $thumb, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+			
+            imagepng($tmp_img, $plugindir . '/imagine/' . $galslug . '/thumbs/thumb_' . esc_attr($file_name));
+		
+        } else if ( $ext == 'gif' || $ext == 'GIF' ) {
+            
+            $tmp_img = imagecreatetruecolor($new_width, $new_height);
+            
+            // copy and resize old image into new image
+		    imagecopyresampled($tmp_img, $thumb, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+			
+            imagegif($tmp_img, $plugindir . '/imagine/' . $galslug . '/thumbs/thumb_' . esc_attr($file_name));
+		
+        }
+		
 
 		move_uploaded_file($file_tmp, $plugindir . '/imagine/' . $galslug . '/' . esc_attr($file_name));
 		echo "<p class='succes'>" . __('Uploaded', 'imagine-images') . ": " . esc_html($file_name) . "</p>";
