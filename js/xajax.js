@@ -376,10 +376,12 @@
 				if (aname == undefined) {
 					aname = $(this).find('[col="aname"]').text();
 				}
+                var apreview = $(this).find('[name="albumPreview"]').val();
 				var alb = {
 					albumId: aid,
 					albumDesc: albumdesc,
-					albumName: aname
+					albumName: aname,
+                    albumPreview: apreview
 				};
 				album.push(alb);
 			});
