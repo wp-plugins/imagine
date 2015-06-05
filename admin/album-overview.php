@@ -41,12 +41,14 @@ echo '<h2>' . __('Albums', 'imagine-languages') . '</h2>';
 		$albtime = $album->creationTime;
 		$albauthor = $album->albumAuthor;
 		$albcontent = $album->albumContent;
+        $aitem = explode( ',' , $albcontent );
 		if ($albcontent != 0) {
 			$gals = count(explode(',',$albcontent));
+            
 		} else {
 			$gals = 0;
 		}
-		
+        
 		echo '<tr class="alternate" row="album" aid="'.esc_attr($aid).'">';
 		echo '<th scope="row"><a type="edit-album" aid="'.esc_attr($aid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/edit.png"></a> <a type="delete-album" aid="'.esc_attr($aid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></th>';
 		echo '<td col="aid">'.esc_html($aid).'</td>';
@@ -55,7 +57,23 @@ echo '<h2>' . __('Albums', 'imagine-languages') . '</h2>';
 		echo '<td col="acontent">'.esc_html($gals).'</td>';
 		echo '<td col="aauthor">'.esc_html($albauthor).'</th>';
 		echo '<td col="adate">'.esc_html($albdate).' at '.esc_html($albtime).'</th>';	
-		echo '<td col="apreview">'.esc_html($albpreviewimg).'</td>';
+		echo '<td col="apreview">';
+        echo '<select name="albumPreview">';
+        foreach ( $aitem as $gal ) {
+            $imgs = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_img WHERE galleryId= '$gal'");
+                foreach($imgs as $img) {
+                    $gid = $img->galleryId;
+                    $filename = $img->imgFilename;
+                    if ( !empty($album->albumPreviewImg) && $album->albumPreviewImg == $filename ) {
+                        echo '<option value="'.esc_attr($filename).'" aid="'.esc_attr($aid).'" selected="selected">'.esc_html($filename).'</option>'; 
+                    } else {
+                        echo '<option value="'.esc_attr($filename).'" aid="'.esc_attr($aid).'">'.esc_html($filename).'</option>'; 
+                }
+            }
+        }
+        
+        echo '</select>';
+        echo '</td>';
 		echo '<td><a type="edit-album" aid="'.esc_attr($aid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/edit.png"></a> <a type="delete-album" aid="'.esc_attr($aid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></td>';
 		
 		

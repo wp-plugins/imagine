@@ -10,7 +10,12 @@
 			<input type="text" name="optionImagineThumbnailWidth" class="regular-text" value="<?php echo get_option('optionImagineThumbnailWidth'); ?>"> <p>px</p>
 			</td>
 		</tr>
-		
+		<tr>
+			<th scope="row"><?php echo __('Thumbnail ratio', 'imagine-languages'); ?>: </th>
+			<td>
+			<input type="text" name="optionImagineThumbnailRatio" class="regular-text" value="<?php echo get_option('optionImagineThumbnailRatio'); ?>"> 
+			</td>
+		</tr>
 		<tr>
 			<th scope="row"><?php echo __('Default gallery template', 'imagine-languages'); ?>: </th>
 			<td>
@@ -85,6 +90,8 @@
 			</select>
 			</td>
 		</tr>
+		
+		
 	</table>
 	<div id="option-submit" class="button buttom-primary" type="submit" name="option-submit" value="Opslaan"><?php echo __('Save', 'imagine-languages'); ?></div>
 </form>

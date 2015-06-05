@@ -66,7 +66,7 @@
 		$imgtags = $img->imageTags;
 		
 		echo '<tr class="alternate" gid="'.esc_attr($gid).'" imgid="'.esc_attr($imgid).'" row="image">';
-		echo '<th scope="row" class="col-thumb"><img src="'.esc_attr($pluginurl).'/imagine/'.esc_attr($galslug).'/thumbs/thumb_'.esc_attr($imgname).'"></th>';
+		echo '<th scope="row" class="col-thumb"><div class="table_thumbwrap"><img src="'.esc_attr($pluginurl).'/imagine/'.esc_attr($galslug).'/thumbs/thumb_'.esc_attr($imgname).'"></div></th>';
         echo '<th scope="row"><a type="delete-image" iid="'.esc_attr($imgid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></th>';
 		
 		echo '<td class="col-narrow">'.esc_html($imgid).'</td>';
