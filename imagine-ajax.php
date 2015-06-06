@@ -98,7 +98,6 @@ function imagine_ajaxsubmit() {
 			
 			
 			
-			
 			$today = date("Y-m-d"); 
 			$time = date('H:i:s');
 			$author = wp_get_current_user();
@@ -132,7 +131,8 @@ function imagine_ajaxsubmit() {
 							"creationTime" => $time,
 							"galleryAuthor" => $author,
 							"galleryDesc"=>$galdesc, 
-							"galleryPreviewImg"=>"unset"
+							"galleryPreviewImg"=>"unset",
+                            "defaultTemplate"=>"none"
 						)
 					);
 					echo '<p class="succes">' . __('Gallery', 'imagine-images') . ' '.$galname.' ' . __('created succesfully.', 'imagine-images') . '</p>';
@@ -171,6 +171,13 @@ function imagine_ajaxsubmit() {
 			} else {
 				$galpreview = null;
 			}
+            
+            if(isset($gal['galTemplate'])) {	
+					$galtemp = sanitize_text_field($gal['galTemplate']);
+				
+			} else {
+				$galtemp = null;
+			}
 			
 			if(isset($gal['galDesc'])) {	
 				if ( !preg_match("/^[a-zA-Z0-9!?,. ]*$/", $gal['galDesc'] ) ) {
@@ -187,7 +194,8 @@ function imagine_ajaxsubmit() {
 				$wpdb -> update($wpdb->prefix.'imagine_gallery', array(
 					"galleryName" => $galname, 
 					"galleryDesc"=>$galdesc,
-                    "galleryPreviewImg" => $galpreview
+                    "galleryPreviewImg" => $galpreview,
+                    "defaultTemplate" => $galtemp
                 ), 
                 array("galleryId"=>$galid));
 			}
@@ -279,7 +287,7 @@ function imagine_ajaxsubmit() {
 			$author = $author->display_name;
 			
 			
-			
+			$atemp = get_option('optionImagineDefaultAlbumTemplate');
 			
 			
 			$existname = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumName = '$aname'");
@@ -298,7 +306,8 @@ function imagine_ajaxsubmit() {
 							"creationDate" => $today,
 							"creationTime" => $time,
 							"albumAuthor" => $author,
-							"albumPreviewImg"=>"unset"
+							"albumPreviewImg"=>"unset",
+                            "defaultTemplate"=>"none"
 						)
 					);
 					echo '<p class="succes">' . __('Album', 'imagine-images') . ' '.$aname.' ' . __('created succesfully', 'imagine-images') . '.</p>';
@@ -349,12 +358,19 @@ function imagine_ajaxsubmit() {
 			} else {
 				$galpreview = null;
 			}
+            if(isset($album['albumTemp'])) {	
+					$albumtemp = sanitize_text_field($album['albumTemp']);
+				
+			} else {
+				$albumtemp = null;
+			}
 			$exist = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$albumid'");
 			if ($exist != NULL) {
 				$wpdb -> update($wpdb->prefix.'imagine_albums', array(
 					"albumName" => $albumname, 
 					"albumDesc"=>$albumdesc,
-                    "albumPreviewImg"=>$albumpreview), 
+                    "albumPreviewImg"=>$albumpreview,
+                    "defaultTemplate" => $albumtemp), 
 					array("albumId"=>$albumid));
 			}
 		}
@@ -756,13 +772,26 @@ function imagine_ajaxsubmit() {
 				echo '</select></p>';
 			}
 			*/
+            
+            // get option for pluginwide default gallery template from db.
 			$opt1 = get_option('optionImagineDefaultGalleryTemplate');
+            
+            // get option for gallery specific default template fromd db.
+            $dgtemp = $wpdb->get_col("SELECT defaultTemplate FROM ".$wpdb->prefix."imagine_gallery WHERE galleryId = '$gallery'");
 			
+            // check if a template is set in the ajax call (can come from inline or $.imagineGallery(template);
 			if ( isset( $_GET['imagine'][0]['template'] ) ) {
+                // if set through ajax use it.
 				$template = sanitize_text_field($_GET['imagine'][0]['template']);
+            // if not set use from settings
 			} else {
-				// add default gallery template -- PER GALLERY
-				$template = $opt1;
+                // if gallery specific template in gallery setting is set, use it.
+                if ( $dgtemp[0] !== "none") {
+                    $template = $dgtemp[0];
+                } else {
+                    // if nothing else is found, use sitewide setting for default gallery template.
+				    $template = $opt1;
+                }
 			}
 			$opt = get_option('optionImagineDefaultLayoverTemplate');
 			
@@ -790,15 +819,19 @@ function imagine_ajaxsubmit() {
 			
 		
         } 
+    
         if (isset($_GET['imagine'][0]['album'])) {
-            
+            $album = intval($_GET['imagine'][0]['album']);
             $opt1 = get_option('optionImagineDefaultAlbumTemplate');
-			
+			$datemp = $wpdb->get_col("SELECT defaultTemplate FROM ".$wpdb->prefix."imagine_albums WHERE albumId = '$album'");
 			if ( isset( $_GET['imagine'][0]['template'] ) ) {
 				$template = sanitize_text_field($_GET['imagine'][0]['template']);
 			} else {
-				// add default album template -- PER GALLERY
-				$template = $opt1;
+				if ( $datemp[0] !== "none") {
+                    $template = $datemp[0];
+                } else {
+				    $template = $opt1;
+                }
 			}
 					
 			
