@@ -75,6 +75,7 @@
 		echo '<td class="col-wide" col="imgtitle">'.esc_html($imgtitle).'</td>';
 		echo '<td class="col-medium" col="imgauthor">'.esc_html($author).'</th>';
 		echo '<td class="col-small" col="imgdate">'.esc_html($imgdate).' at '.esc_html($imgtime).'</th>';	
+       
 		echo '<td class="col-medium" col="imgtags">'.esc_html($imgtags).'</th>';	
 		echo '<td class="col-medium"><a href="admin.php?page=edit-gallery&imgrem='.esc_attr($imgid).'"><img src="' . plugin_dir_url(__DIR__) . 'img/32x32/block.png"></a></td>';
 		

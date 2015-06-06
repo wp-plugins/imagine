@@ -24,6 +24,7 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 	echo '<th class="col-small">' . __('Uploaded by','imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Created on','imagine-languages') . '</th>';
 	echo '<th class="col-small">' . __('# of images','imagine-languages') . '</th>';
+    echo '<th class="col-medium">' . __('Default template','imagine-languages') . '</th>';
 	echo '<th class="col-wide">' . __('Preview image','imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Actions','imagine-languages') . '</th>';
 	echo '</tr>';
@@ -31,6 +32,7 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 	
 	echo '<tbody>';
 	
+    $tmps = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'gallery'");
 
 	foreach ($galleries as $gallery) {
 		$galname = $gallery -> galleryName;
@@ -42,7 +44,7 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 		$gdate = $gallery->creationDate;
 		$gtime = $gallery->creationTime;
 		$gauthor = $gallery->galleryAuthor;
-		
+		$gtemp = $gallery->defaultTemplate;
 		$imgs = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix ."imagine_img WHERE galleryId = '$gid'");
 		
 		$contains = count($imgs);
@@ -56,6 +58,18 @@ echo '<h2>' . __('Gallery','imagine-languages') . '</h2>';
 		echo '<td col="gauthor">'.esc_html($gauthor).'</th>';
 		echo '<td col="gdate">'.esc_html($gdate).' at '.esc_html($gtime).'</th>';	
 		echo '<th>'.esc_html($contains).'</th>';
+        echo '<th><select name="galleryTemplate">';
+        echo '<option value="none">none</option>';
+        foreach ($tmps as $tmp) {
+            $tname = $tmp->tempName;
+            if ($gtemp == $tname) {
+            echo '<option value="'.esc_attr($tname).'" selected="selected">'.esc_html($tname).'</option>'; 
+            } else {
+            echo '<option value="'.esc_attr($tname).'">'.esc_html($tname).'</option>';
+            }
+        }
+        
+        echo '</select></th>';
 		echo '<td col="gpreview">';
         echo '<select name="galleryPreview">';
         foreach($imgs as $img) {

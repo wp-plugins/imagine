@@ -22,7 +22,7 @@
 			<select name="optionImagineDefaultGalleryTemplate">
 				<?php $option = get_option('optionImagineDefaultGalleryTemplate'); 
 					global $wpdb;
-					$gtemps = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = 'gallery'");
+					$gtemps = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'gallery'");
 					foreach($gtemps as $tmp) {
 						$tname = $tmp->tempName;
 						
@@ -43,7 +43,7 @@
 			<select name="optionImagineDefaultAlbumTemplate">
 				<?php $option = get_option('optionImagineDefaultAlbumTemplate'); 
 					global $wpdb;
-					$gtemps = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = 'album'");
+					$gtemps = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'album'");
 					foreach($gtemps as $tmp) {
 						$tname = $tmp->tempName;
 						
@@ -64,7 +64,7 @@
 			<select name="optionImagineDefaultImageTemplate">
 				<?php $option = get_option('optionImagineDefaultImageTemplate'); 
 					global $wpdb;
-					$gtemps = $wpdb->get_results("SELECT * FROM wp_imagine_templates WHERE tempType = 'image'");
+					$gtemps = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'image'");
 					foreach($gtemps as $tmp) {
 						$tname = $tmp->tempName;
 						

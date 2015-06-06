@@ -23,13 +23,14 @@ echo '<h2>' . __('Albums', 'imagine-languages') . '</h2>';
 	echo '<th class="col-wide">' . __('# of galleries', 'imagine-languages') . '</th>';
 	echo '<th class="col-small">' . __('Uploaded by', 'imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Created on', 'imagine-languages') . '</th>';
+echo '<th class="col-medium">' . __('Default template','imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Preview image', 'imagine-languages') . '</th>';
 	echo '<th class="col-medium">' . __('Actions', 'imagine-languages') . '</th>';
 	echo '</tr>';
 	echo '</thead>';
 	
 	echo '<tbody>';
-	
+	$tmps = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."imagine_templates WHERE tempType = 'album'");
 
 	foreach ($albums as $album) {
 		$albname = $album -> albumName;
@@ -41,6 +42,7 @@ echo '<h2>' . __('Albums', 'imagine-languages') . '</h2>';
 		$albtime = $album->creationTime;
 		$albauthor = $album->albumAuthor;
 		$albcontent = $album->albumContent;
+        $atemp = $album->defaultTemplate;
         $aitem = explode( ',' , $albcontent );
 		if ($albcontent != 0) {
 			$gals = count(explode(',',$albcontent));
@@ -57,6 +59,18 @@ echo '<h2>' . __('Albums', 'imagine-languages') . '</h2>';
 		echo '<td col="acontent">'.esc_html($gals).'</td>';
 		echo '<td col="aauthor">'.esc_html($albauthor).'</th>';
 		echo '<td col="adate">'.esc_html($albdate).' at '.esc_html($albtime).'</th>';	
+        echo '<th><select name="albumTemplate">';
+        echo '<option value="none">none</option>';
+        foreach ($tmps as $tmp) {
+            $tname = $tmp->tempName;
+            if ($atemp == $tname) {
+            echo '<option value="'.esc_attr($tname).'" selected="selected">'.esc_html($tname).'</option>'; 
+            } else {
+            echo '<option value="'.esc_attr($tname).'">'.esc_html($tname).'</option>';
+            }
+        }
+        
+        echo '</select></th>';
 		echo '<td col="apreview">';
         echo '<select name="albumPreview">';
         foreach ( $aitem as $gal ) {
