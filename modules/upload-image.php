@@ -63,8 +63,14 @@ for ($i = 0; $i < count($_FILES['image-upload']['name']); $i++) {
 
 
 		$tw = get_option('optionImagineThumbnailWidth');
+        $ratio = get_option('optionImagineThumbnailRatio');
 		$thumbWidth = $tw;
 		
+        $ratio = explode(':', $ratio);
+        
+        $rw = $ratio[0];
+        $rh = $ratio[1];
+        
 		$new_width = $thumbWidth;
 		$new_height = $height / ($width / $thumbWidth);
 		
