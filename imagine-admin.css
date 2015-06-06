@@ -34,7 +34,7 @@
 .admin_imagine_thumbnail_box p {
 	margin: 0 0 5px 0;
 }
-.par {
+.imagine-wrap .par {
     float:left;
     clear:none;
     padding-left: 20px;
@@ -78,43 +78,43 @@
     display:none;
 }
 
-h3.formhead {
+.imagine-wrap h3.formhead {
 	margin:0 0 10px 3px;
 }
-.hightlight {
+.imagine-wrap .hightlight {
 	background-color:#0074A2;
 }
-.col-narrow {
+.imagine-wrap .col-narrow {
 	width:20px;
 }
-.col-thumb {
+.imagine-wrap .col-thumb {
 	width:120px;
 }
-.col-thumb .table_thumbwrap {
+.imagine-wrap .col-thumb .table_thumbwrap {
     width:160px;
     height: 90px;
     overflow: hidden;
   }
-.col-thumb .table_thumbwrap img {
+.imagine-wrap .col-thumb .table_thumbwrap img {
     max-width:160px;
     max-height: 90px;
   }
-.col-small {
+.imagine-wrap .col-small {
 	width:100px;
 }
-.col-medium {
+.imagine-wrap .col-medium {
 	width: 150px;
 }
 
-.col-wide {
+.imagine-wrap .col-wide {
 	width: 250px;
 }
 
-th a {
+.imagine-wrap th a {
 	font-size: 0.9em;
 }
 
-thead th span {
+.imagine-wrap thead th span {
 	font-size: 0.8em;
 	color:#0074A2;
 }
@@ -131,7 +131,7 @@ thead th span {
 	color: green;
 }
 
-.succes {
+.imagine-wrap .succes {
 	padding:3px 6px 3px 6px;
 	background:white;
 	border:1px solid #c8c8c8;
@@ -139,7 +139,7 @@ thead th span {
 	color:green;
 
 }
-.fail {
+.imagine-wrap .fail {
 	padding:3px 6px 3px 6px;
 	background:white;
 	border:1px solid #c8c8c8;
