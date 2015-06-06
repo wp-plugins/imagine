@@ -322,6 +322,7 @@
 				var gid = $(this).attr('gid');
 				var galdesc = $(this).find('[name="galleryDesc"]').val();
                 var galpreview = $(this).find('[name="galleryPreview"]').val();
+                var galtemp = $(this).find('[name="galleryTemplate"]').val();
 				if (galdesc == undefined) {
 					galdesc = $(this).find('[col="gdesc"]').text();
 				}
@@ -338,7 +339,8 @@
 					galId: gid,
 					galDesc: galdesc,
 					galName: gname,
-                    galPreview: galpreview
+                    galPreview: galpreview,
+                    galTemplate: galtemp
 				};
 				gallery.push(gal);
 			});
@@ -369,6 +371,7 @@
 			$('[row="album"]').each( function() {
 				var aid = $(this).attr('aid');
 				var albumdesc = $(this).find('[name="albumDesc"]').val();
+                var albumtemp = $(this).find('[name="albumTemplate"]').val();
 				if (albumdesc == undefined) {
 					albumdesc = $(this).find('[col="adesc"]').text();
 				}
@@ -381,7 +384,8 @@
 					albumId: aid,
 					albumDesc: albumdesc,
 					albumName: aname,
-                    albumPreview: apreview
+                    albumPreview: apreview,
+                    albumTemp: albumtemp
 				};
 				album.push(alb);
 			});
