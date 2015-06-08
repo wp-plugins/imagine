@@ -29,13 +29,14 @@ echo '</div>';
 
 <script>
     $(document).ready( function() {
-        var w = $('.imagine-carousel-wrap').parent('.imagine').width() - 12;
+        
         
         fr = new FilmRoll({
             container: '.imagine-carousel-wrap',
             height: 200,
             pager: false,
           });
+        var w = $('.imagine-carousel-wrap').parent('.imagine').width() - 12;
     });
     
     $(window).on('resize', function() {
