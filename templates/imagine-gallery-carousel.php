@@ -36,6 +36,7 @@ echo '</div>';
             height: 200,
             pager: false,
           });
+        fr.resize();
     });
     
 </script>
