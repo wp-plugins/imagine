@@ -79,6 +79,9 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.8 =
+* Added carousel and wall templates.
+
 = 0.99.7 =
 * Improved image resizing. Supports jpg/png/gif.
 * Some minor fixes.

@@ -140,6 +140,8 @@ function register_imagine() {
 	
 	$ext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Extended'");
 	$min = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Minified'");
+    $wall = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Wall'");
+     $car = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Carousel'");
 	$albmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
     $albext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Extended'");
     $imgmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Image Minified'");
@@ -175,10 +177,40 @@ function register_imagine() {
 						"tempPath" => $dir,
 						"tempCss" => 'imagine-gallery-minified.css',
 						"tempPhp" => 'imagine-gallery-minified.php',
-						"tempDesc"=> "Showcase Gallery minified", 
+						"tempDesc"=> "Showcase Gallery Minified", 
 					)
 				);		
-				}	
+				}
+    if ($wall == NULL) {
+	$wpdb -> insert($table_templates, array(
+						"tempName" => "Imagine Gallery Wall", 
+						"tempType" => "gallery",
+						"tempSlug" => "imagine-gallery-wall",
+						"tempDate" => $today,
+						"tempTime" => $time,
+						"tempAuthor" => "imagine",
+						"tempPath" => $dir,
+						"tempCss" => 'imagine-gallery-wall.css',
+						"tempPhp" => 'imagine-gallery-wall.php',
+						"tempDesc"=> "Showcase Gallery Wall", 
+					)
+				);		
+				}
+    if ($car == NULL) {
+	$wpdb -> insert($table_templates, array(
+						"tempName" => "Imagine Gallery Carousel", 
+						"tempType" => "gallery",
+						"tempSlug" => "imagine-gallery-carousel",
+						"tempDate" => $today,
+						"tempTime" => $time,
+						"tempAuthor" => "imagine",
+						"tempPath" => $dir,
+						"tempCss" => 'imagine-gallery-carousel.css',
+						"tempPhp" => 'imagine-gallery-carousel.php',
+						"tempDesc"=> "Showcase Gallery Carousel", 
+					)
+				);		
+				}
 	if ($albmin == NULL) {
 	$wpdb -> insert($table_templates, array(
 						"tempName" => "Imagine Album Minified", 
@@ -331,7 +363,9 @@ include 'modules/imagine-meta-box.php';
 function initimagine() {
 	
 	wp_enqueue_script('jquery');
+    
 	wp_enqueue_script('imagine-front-js', plugin_dir_url(__FILE__) . 'js/imagine.js', array('jquery'), '1.0', false);
+    
     // wp_enqueue_script('fancyBox', plugin_dir_url(__FILE__) . 'js/jquery.fancybox.js', array('jquery'));
     // wp_enqueue_style('fancyBoxCSS', plugin_dir_url(__FILE__) . 'js/jquery.fancybox.js');
 	wp_localize_script('imagine-front-js', 'imagineajax', array('ajaxurl' => admin_url('admin-ajax.php')));
@@ -339,8 +373,6 @@ function initimagine() {
 
 	add_action('wp_ajax_nopriv_imagine-ajaxsubmit', 'imagine_ajaxsubmit');
 	add_action('wp_ajax_imagine-ajaxsubmit', 'imagine_ajaxsubmit');
-	
-	
 	
 }
 
