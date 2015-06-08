@@ -36,11 +36,6 @@ echo '</div>';
             height: 200,
             pager: false,
           });
-        var w = $('.imagine-carousel-wrap').parent('.imagine').width() - 12;
     });
     
-    $(window).on('resize', function() {
-        var w = $('.imagine-carousel-wrap').parent('.imagine').width() - 12;
-        
-    });
 </script>
