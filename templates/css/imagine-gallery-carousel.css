@@ -5,11 +5,11 @@
     left: 0;
     top: 0;
 }
-    .imagine-carousel-wrap[template='imagine-gallery-carousel'] .imagine-carousel-thumbnail-wrap {
+     .imagine-carousel-wrap[template="imagine-gallery-carousel"] .imagine-carousel-thumbnail-wrap {
         height: 200px;
         overflow: hidden;
     }
-    .imagine-carousel-wrap[template='imagine-gallery-carousel'] .imagine-carousel-thumbnail-wrap img{
+    .imagine-carousel-wrap[template="imagine-gallery-carousel"] .imagine-carousel-thumbnail-wrap img{
         height: 100%;
         width: auto;
     }
