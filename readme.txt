@@ -23,7 +23,8 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <li>Albums</li>
 <li>Preview images</li>
 <li>Code generator</li>
-<li>Custom templates (for now only hardcoded into php/css)</li>
+<li>Included Templates - Minmized/Extended/Wall/Carousel</li>
+<li>Custom Templates (for now only hardcoded into php/css)</li>
 <li>Some settings</li>
 <li>Languages (Dutch and English are included.)</li>
 <li><a href="http://tocadovision.nl/imagine/" target="blank">Development DOCS</a></li>
