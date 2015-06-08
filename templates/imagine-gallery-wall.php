@@ -21,7 +21,6 @@ foreach ($imgs as $img) {
 	echo '<img template="'.esc_attr($tslug).'" class="imagine-thumbnail-wrap" src="' . $pluginurl . '/imagine/' . esc_attr($galslug) . '/thumbs/thumb_' . esc_attr($filename) . '" gid="' . esc_attr($gid) . '" imgid="' . esc_attr($imgid) . '" layovertemp="' . esc_attr($layovertemplate) . '">';
 
 }
-echo '<div class="spacer" style="clear: both;"></div>';
 echo '</div>';
 ?>
 
@@ -30,12 +29,12 @@ echo '</div>';
     $(document).ready( function() {
         var w = $('.imagine-wall-wrap').parent('.imagine').width() - 12;
         
-        $('.imagine-wall-wrap').css({width: w, padding: '10px'}).collagePlus({'targetHeight': 200});
+        $('.imagine-wall-wrap').css({width: w, padding: '10px'}).collagePlus({'targetHeight': 200, 'allowPartialLastRow' : true});
     });
     
     $(window).on('resize', function() {
         var w = $('.imagine-wall-wrap').parent('.imagine').width() - 12;
         
-        $('.imagine-wall-wrap').css({width: w, padding: '10px'}).collagePlus({'targetHeight': 200});
+        $('.imagine-wall-wrap').css({width: w, padding: '10px'}).collagePlus({'targetHeight': 200, 'allowPartialLastRow' : true});
     });
 </script>
