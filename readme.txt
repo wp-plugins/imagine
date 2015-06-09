@@ -19,9 +19,9 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <p><strong>Current features</strong>
 <ul>
 <li>Galleries</li>
-<li>Image upload</li>
-<li>Single image</li>
+<li>Images</li>
 <li>Albums</li>
+<li>Image upload</li>
 <li>Preview images</li>
 <li>Code generator</li>
 <li>Included Templates - Minmized/Extended/Wall/Carousel</li>
