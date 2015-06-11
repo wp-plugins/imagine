@@ -7,24 +7,23 @@ Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A new cool kid on the block gallery plugin completely written with jQuery.ajax for extremely versatile pages.
+A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
 
 == Description ==
 
-<p>A new cool kid on the block gallery plugin completely written with jQuery.ajax for extremely versatile pages.</p>
+<p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
 <p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
-<p><a href="http://tocadovision.nl/imagine/examples/gallery" target="blank">LIVE DEMO</a></p>
 
 
 <p><strong>Current features</strong>
 <ul>
 <li>Galleries</li>
-<li>Images</li>
-<li>Albums</li>
 <li>Image upload</li>
+<li>Single image</li>
+<li>Albums</li>
 <li>Preview images</li>
 <li>Code generator</li>
-<li>Included Templates - Minmized/Extended/Wall/Carousel</li>
+<li>Included Gallery Templates - Minmized/Extended/Wall/Carousel/3D slider</li>
 <li>Custom Templates (for now only hardcoded into php/css)</li>
 <li>Some settings</li>
 <li>Languages (Dutch and English are included.)</li>
@@ -81,6 +80,9 @@ Yes. With the same options as galleries.
 4. Album edit screen.
 
 == Changelog ==
+= 0.99.9 =
+* Added a 3D slider template.
+
 = 0.99.8 =
 * Added carousel and wall templates.
 

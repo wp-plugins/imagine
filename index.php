@@ -5,7 +5,7 @@
  * Author: Tocado Vision
  * Author URI: http://tocadovision.nl
  * Description: A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
- * Version: 0.99.8
+ * Version: 0.99.9
  * Text Domain: imagine-languages
  * Domain Path: /lang/
  */
@@ -141,7 +141,8 @@ function register_imagine() {
 	$ext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Extended'");
 	$min = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Minified'");
     $wall = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Wall'");
-     $car = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Carousel'");
+    $threed = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Slicebox'");
+    $car = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Gallery Carousel'");
 	$albmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Minified'");
     $albext = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Album Extended'");
     $imgmin = $wpdb->get_row("SELECT * FROM ".$table_templates." WHERE tempName ='Imagine Image Minified'");
@@ -193,6 +194,21 @@ function register_imagine() {
 						"tempCss" => 'imagine-gallery-wall.css',
 						"tempPhp" => 'imagine-gallery-wall.php',
 						"tempDesc"=> "Showcase Gallery Wall", 
+					)
+				);		
+				}
+    if ($threed == NULL) {
+	$wpdb -> insert($table_templates, array(
+						"tempName" => "Imagine Gallery Slicebox", 
+						"tempType" => "gallery",
+						"tempSlug" => "imagine-gallery-slicebox",
+						"tempDate" => $today,
+						"tempTime" => $time,
+						"tempAuthor" => "imagine",
+						"tempPath" => $dir,
+						"tempCss" => 'imagine-gallery-slicebox.css',
+						"tempPhp" => 'imagine-gallery-slicebox.php',
+						"tempDesc"=> "Showcase Gallery Slicebox", 
 					)
 				);		
 				}

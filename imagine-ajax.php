@@ -698,7 +698,7 @@ function imagine_ajaxsubmit() {
 			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
 			break 1;
 		}
-        if (isset($data['template']) && preg_match("/^[a-zA-Z ]*$/", $data['template'] )) {
+        if (isset($data['template']) && preg_match("/^[a-zA-Z0-9 ]*$/", $data['template'] )) {
 			$temp = sanitize_text_field($data['template']);
 		} else {
 			echo "<p class='fail'>" . __('Error saving.', 'imagine-images') . "</p>";
