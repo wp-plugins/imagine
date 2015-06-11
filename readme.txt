@@ -7,11 +7,11 @@ Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.
+A new cool kid on the block gallery plugin completely written with jQuery.ajax for extremely versatile pages.
 
 == Description ==
 
-<p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
+<p>A new cool kid on the block gallery plugin completely written with jQuery.ajax for extremely versatile pages.</p>
 <p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
 <p><a href="http://tocadovision.nl/imagine/examples/gallery" target="blank">LIVE DEMO</a></p>
 
