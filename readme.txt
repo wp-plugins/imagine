@@ -14,6 +14,7 @@ A new cool kid on the block gallery plugin completely written with $.AJAX.get() 
 <p>A new cool kid on the block gallery plugin completely written with $.AJAX.get() for extremely versatile pages.</p>
 <p>As from now this gallery is still in development phase but i would be happy to get some response and maybe even some requests for functionality.</p>
 
+<p><a href="http://tocadovision.nl/imagine/examples/gallery/" target="blank">LIVE DEMO</a></p>
 
 <p><strong>Current features</strong>
 <ul>
